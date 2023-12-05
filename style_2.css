@@ -1,0 +1,128 @@
+html {
+    background: #0E3741;
+  }
+
+  .cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  #circle {
+    /* transition: transform 0.3s; */
+    width: 10px;
+    height: 10px;
+    background: #CB4B16;
+    border-radius: 80%;
+  }
+
+  #expand {
+    visibility: hidden;
+    display: none;
+    transform: scale(0);
+    /* transition: transform 0.3s, display 0.3s; */
+    backdrop-filter: blur(2px);
+    background-color: rgba(54, 59, 63, 0.5);
+    border-style: none;
+    /* border-color: white; */
+    color: white;
+    padding: 3px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 16px;
+    margin-left: 25px;
+    margin-top: -5px;
+    font-size: 12px;
+    padding-left: 20px;
+  }
+
+  #expand::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5px; /* Adjust the left position for the circle */
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  .hover-image {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    overflow: hidden;
+  }
+
+  .wrapper {
+    /* overflow-x: hidden; */
+    position: relative;
+}
+
+
+.container {
+  display: flex;
+  width: 300vw;
+
+  .text {
+      display: flex;
+      gap: 3em;
+      
+      p {
+          font-size: .8rem;
+      }
+  }
+
+  section {
+      width: 100vw;
+      padding: 20vw 0vw;
+
+      h1 {
+          font-size: 3rem;
+          margin: 0;
+      }
+
+      p {
+          font-size: 1.2rem;
+          width: 50vw;
+      }
+
+      ul {
+          list-style-type: none;
+          display: flex;
+          gap: 3em;
+          width: 100%;
+          height: 300px;
+          padding: 0;
+
+          li {
+              background: white;
+              border-radius: .3em;
+              flex-grow: 1;
+          }
+      }
+
+  }
+}
+
+section {
+  height: 100vh;
+
+}
+
+#sec1 {
+  background-color: pink;
+  width: 100vw;
+}
+
+#sec2 {
+  background-color: navy;
+  width: 33vw;
+}
+
+.sec3 {
+  background-color:#0E3741;
+}
