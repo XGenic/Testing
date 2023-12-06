@@ -122,6 +122,7 @@ section {
 #sec1 {
   background-image: url('assets/2560x1920/2560x1920_cg2023rzv - edited-01.jpg');
   background-position: center;
+  background-size: cover;
   /* background-color: pink; */
   width: 100vw;
 }
