@@ -2,6 +2,11 @@ html {
     background: #0E3741;
   }
 
+  body{
+    margin: 0px;
+  }
+
+  /* CURSOR */
   .cursor {
     position: fixed;
     pointer-events: none;
@@ -65,7 +70,7 @@ html {
 
 .container {
   display: flex;
-  width: 300vw;
+  width: 600vw;
 
   .text {
       display: flex;
@@ -75,8 +80,9 @@ html {
           font-size: .8rem;
       }
   }
+}
 
-  section {
+  /* section {
       width: 100vw;
       padding: 20vw 0vw;
 
@@ -106,23 +112,43 @@ html {
       }
 
   }
-}
+} */
 
 section {
+  width: 100vw;
   height: 100vh;
-
 }
 
 #sec1 {
-  background-color: pink;
+  background-image: url('assets/2560x1920/2560x1920_cg2023rzv - edited-01.jpg');
+  background-position: center;
+  /* background-color: pink; */
   width: 100vw;
 }
 
 #sec2 {
-  background-color: navy;
+  background-color: rgb(247,244,239);
   width: 33vw;
 }
 
-.sec3 {
+#sec3 {
   background-color:#0E3741;
+}
+
+#sec4 {
+  background-color: rgb(200,142,87);
+}
+
+#sec5 {
+  background-color: rgb(87, 200, 162);
+  width: 33vw
+}
+
+#sec6{
+  background-color:beige
+}
+
+#sec7{
+  width: 134vw;
+  height: 120vh;
 }
