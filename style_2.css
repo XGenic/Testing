@@ -56,8 +56,8 @@ html {
   }
 
   .hover-image {
-    width: 200px;
-    height: 200px;
+    width: 50vw;
+    height: auto;
     margin: 20px;
     overflow: hidden;
   }
