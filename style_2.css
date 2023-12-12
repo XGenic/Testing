@@ -56,10 +56,12 @@ html {
   }
 
   .hover-image {
-    width: 50vw;
+    /* width: 50vw; */
     height: auto;
-    margin: 20px;
+    max-width: 100%;
+    /* margin: 20px; */
     overflow: hidden;
+    object-fit: cover;
   }
 
   .wrapper {
@@ -134,7 +136,68 @@ section {
 
 #sec3 {
   background-color:#0E3741;
+  /* display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; */
 }
+
+/* .sec3_img_wrap{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    max-height: 100%;
+    }
+    
+  .div1 { grid-area: 7 / 5 / 10 / 9;
+          display: flex;
+          justify-content: center;
+  }
+  .div2 { grid-area: 2 / 5 / 5 / 9; 
+          display: flex;
+          justify-content: center;
+
+  }
+  .div3 { grid-area: 3 / 1 / 9 / 5; 
+          display: flex;
+
+  }
+  .div4 { grid-area: 3 / 9 / 9 / 13; 
+          display: flex;
+
+  } */
+
+  .sec3_img_wrap{  
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      gap: 0px 0px;
+      grid-auto-flow: row;
+      grid-template-areas:
+        ". . . div3 div3 div3 div3 div3"
+        "div1 div1 div1 div3 div3 div3 div3 div3"
+        "div1 div1 div1 . . . . ."
+        "div1 div1 div1 . div4 div4 div4 div4"
+        "div1 div1 div1 . div4 div4 div4 div4"
+        ". . div2 div2 div4 div4 div4 div4"
+        ". . div2 div2 . . . ."
+        ". . div2 div2 . . . .";
+        max-height: 100vh ;
+    }
+    
+    .div1 { grid-area: div1; }
+    
+    .div2 { grid-area: div2; }
+    
+    .div3 { grid-area: div3; }
+    
+    .div4 { grid-area: div4; }
+    
+  
+
 
 #sec4 {
   background-color: rgb(200,142,87);
