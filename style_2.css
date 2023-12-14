@@ -57,11 +57,8 @@ html {
 
   .hover-image {
     /* width: 50vw; */
-    height: auto;
-    max-width: 100%;
     /* margin: 20px; */
     overflow: hidden;
-    object-fit: cover;
   }
 
   .wrapper {
@@ -189,12 +186,36 @@ section {
     }
     
     .div1 { grid-area: div1; }
+
+    .div1 > img{
+      object-fit: cover;
+      width:100%;
+      max-height: 100%;
+    }
     
     .div2 { grid-area: div2; }
+
+    .div2 > img{
+      object-fit: cover;
+      width:100%;
+      max-height: 100%;
+    }
     
     .div3 { grid-area: div3; }
+
+    .div3 > img{
+      object-fit: cover;
+      width:100%;
+      max-height: 100%;
+    }
     
     .div4 { grid-area: div4; }
+
+    .div4 > img{
+      object-fit: cover;
+      width:100%;
+      max-height: 100%;
+    }
     
   
 
