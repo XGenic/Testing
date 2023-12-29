@@ -161,7 +161,7 @@ section {
 
 #sec2 {
   background-color: rgb(247,244,239);
-  width: 33vw;
+  width: 25vw;
   border-right: 1px solid gainsboro;
 }
 
@@ -177,14 +177,17 @@ section {
   margin-top: 0;
   margin-left:2svw;
   margin-right:2svw;
-  font-size: 1.6em;
+  font-size: 2.2em;
   font-weight: 400;
   line-height: 0.9;
+  color: rgb(68, 68, 68);
 }
 
 #sec2_bottom{
   max-height: 30svh;
-  margin-top: 40svh;
+  /* margin-top: 40svh; */
+  /* this margin is pushing from the the bottom of the text, instead of the top of the section, unsure if this will mess anything up*/
+  margin-top: 90%;
   margin-left: 2svw;
   margin-right: 10svw;
   overflow: hidden;
@@ -200,9 +203,10 @@ section {
 #sec2_bottom p {
   font-family: 'Montserrat', sans-serif;
   margin-top: 0;
-  font-size: 0.6em;
+  font-size: 0.8em;
   font-weight: 300;
-  margin-right: 5svw;
+  /* margin-right: 5svw; */
+  margin-right: 0%
 }
 
 #sec3 {
