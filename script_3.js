@@ -54,20 +54,21 @@ function growImage(image) {
     y: rect.top,
     width: rect.width,
     height: rect.height,
-    opacity: 1
+    opacity: 0.2
   });
 
   gsap.to(expandedImageContainer, {
-    duration: 0.5,
+    duration: 0.6,
     backgroundColor: 'rgba(0,0,0,0.8)',
   });
 
   gsap.to(expandedImage, {
-    duration: 0.5,
+    duration: 0.6,
     x: 0,
     y: 0,
     width: windowWidth,
     height: windowHeight,
+    opacity: 1,
     ease: 'power2.inOut',
     onComplete: () => {
       // After the animation, switch to the full image
@@ -86,16 +87,17 @@ function shrinkImage() {
     expandedImage.src = currentExpandedImage.src;
 
     gsap.to(expandedImageContainer, {
-      duration: 0.5,
+      duration: 0.6,
       backgroundColor: 'rgba(0,0,0,0)',
     });
 
     gsap.to(expandedImage, {
-      duration: 0.5,
+      duration: 0.6,
       x: rect.left,
       y: rect.top,
       width: rect.width,
       height: rect.height,
+      opacity: 0.05,
       ease: 'power2.inOut',
       onComplete: () => {
         expandedImageContainer.style.display = 'none';

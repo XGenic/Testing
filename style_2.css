@@ -187,7 +187,7 @@ section {
   max-height: 30svh;
   /* margin-top: 40svh; */
   /* this margin is pushing from the the bottom of the text, instead of the top of the section, unsure if this will mess anything up*/
-  margin-top: 90%;
+  margin-top: 20%;
   margin-left: 2svw;
   margin-right: 10svw;
   overflow: hidden;
@@ -216,6 +216,11 @@ section {
   padding-right: 5vw */
 }
 
+  .sec3_text{
+    background-color: aqua;
+    margin-top: 10vh;
+  }
+
 
   .sec3_img_wrap{  
      display: grid;
@@ -235,7 +240,7 @@ section {
         max-height: 88svh ;
         margin-left: 20svw;
         margin-right: 3svw;
-        margin-top: 10svh;
+        margin-top: -14svh;
         margin-bottom: 2svh;
     }
     
