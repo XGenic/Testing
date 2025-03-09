@@ -126,12 +126,7 @@ const initScrollSnapping = () => {
         trigger: lastSection,
         start: "top top",
         end: "bottom bottom",
-        snap: {
-            snapTo: "labelsDirectional",
-            duration: 1,
-            ease: "power2.inOut",
-            delay: 0.1
-        }
+        snap: 1
     });
 };
 
@@ -159,6 +154,21 @@ const initHorizontalScroll = () => {
         setTrackHeights();
         window.addEventListener("resize", setTrackHeights);
 
+        // Calculate snap points for each section
+        const getSnapPoints = () => {
+            const points = [];
+            const container = document.querySelector(".container");
+            const containerWidth = container.scrollWidth - window.innerWidth;
+            
+            sections.forEach((section) => {
+                const sectionLeft = section.offsetLeft;
+                const normalizedPosition = sectionLeft / containerWidth;
+                points.push(normalizedPosition);
+            });
+            
+            return points;
+        };
+
         // Main horizontal scroll animation
         const horizontalScroll = gsap.to(".container", {
             x: () => -(document.querySelector(".container").scrollWidth - window.innerWidth),
@@ -166,20 +176,17 @@ const initHorizontalScroll = () => {
             scrollTrigger: {
                 trigger: ".wrapper",
                 pin: true,
-                scrub: 1,
+                scrub: 0.5,
                 snap: {
-                    snapTo: (value) => {
-                        // Calculate snap points based on section count (excluding last section)
-                        return Math.round(value * (sections.length - 2)) / (sections.length - 2);
-                    },
-                    duration: 1,
-                    ease: "power2.inOut",
-                    delay: 0.1
+                    snapTo: getSnapPoints(),
+                    duration: 0.5,
+                    ease: "power4.out",
+                    delay: 0,
+                    inertia: false
                 },
                 end: () => `+=${document.querySelector(".container").scrollWidth - window.innerWidth}`,
                 invalidateOnRefresh: true,
                 onUpdate: (self) => {
-                    // Disable horizontal scroll when reaching the last section
                     if (self.progress >= 0.99) {
                         document.querySelector('.container').style.position = 'relative';
                     } else {
@@ -191,14 +198,20 @@ const initHorizontalScroll = () => {
 
         // Section-specific animations
         sections.forEach((section, i) => {
-            if (i < lastSectionIndex) { // Only apply horizontal triggers to non-last sections
+            if (i < lastSectionIndex) {
                 ScrollTrigger.create({
                     trigger: section,
-                    start: "left center",
-                    end: "right center",
+                    containerAnimation: horizontalScroll,
+                    start: "left left",
+                    end: "right left",
                     toggleClass: "active"
                 });
             }
+        });
+
+        // Update snap points on resize
+        window.addEventListener("resize", () => {
+            horizontalScroll.scrollTrigger.snap = getSnapPoints();
         });
     });
 };
