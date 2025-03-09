@@ -27,85 +27,87 @@ const initCursor = () => {
         xTo(e.clientX);
         yTo(e.clientY);
     });
+};
 
-    // Cursor State Toggle
-    const circle = document.getElementById('circle');
-    const expand = document.getElementById('expand');
+// Shared cursor state management
+const cursorManager = {
+    circle: document.getElementById('circle'),
+    expand: document.getElementById('expand'),
+    isExpanded: false,
 
-    const toggleCursor = (isInImage) => {
-        if (isInImage) {
-            gsap.to(circle, { scale: 0, duration: 0.1 });
-            gsap.to(expand, { 
-                scale: 1, 
-                visibility: 'visible', 
-                display: 'block',
-                duration: 0.1 
-            });
-        } else {
-            gsap.to(circle, { scale: 1, duration: 0.1 });
-            gsap.to(expand, { 
-                scale: 0, 
-                visibility: 'hidden',
-                display: 'none',
-                duration: 0.1 
-            });
-        }
-    };
+    showExpandCursor: (text) => {
+        console.log('showExpandCursor called with text:', text);
+        gsap.to(cursorManager.circle, { scale: 0, duration: 0.1 });
+        cursorManager.expand.textContent = text;
+        gsap.to(cursorManager.expand, { 
+            scale: 1, 
+            visibility: 'visible', 
+            display: 'block',
+            duration: 0.1 
+        });
+        console.log('Cursor state after show:', {
+            text: cursorManager.expand.textContent,
+            visibility: cursorManager.expand.style.visibility,
+            display: cursorManager.expand.style.display
+        });
+    },
 
-    // Add hover listeners to images
-    const hoverImages = document.querySelectorAll('.hover-image');
-    hoverImages.forEach(image => {
-        image.addEventListener('mouseenter', () => toggleCursor(true));
-        image.addEventListener('mouseleave', () => toggleCursor(false));
-    });
+    hideExpandCursor: () => {
+        console.log('hideExpandCursor called');
+        gsap.to(cursorManager.circle, { scale: 1, duration: 0.1 });
+        gsap.to(cursorManager.expand, { 
+            scale: 0, 
+            visibility: 'hidden', 
+            display: 'none',
+            duration: 0.1 
+        });
+    }
 };
 
 // Image Expansion
 const initImageExpansion = () => {
     const container = document.getElementById('expanded-image-container');
     const expandedImg = document.getElementById('expanded-image');
-    const expandCursor = document.getElementById('expand');
-    let isExpanded = false;
     let currentScrollPosition = 0;
 
+    const handleExpandedContainerHover = () => {
+        console.log('Expanded container hover detected');
+        cursorManager.showExpandCursor('Collapse');
+    };
+
+    const handleExpandedContainerLeave = () => {
+        console.log('Expanded container leave detected');
+        cursorManager.hideExpandCursor();
+    };
+
     const expandImage = (img) => {
-        // Store scroll position
+        console.log('expandImage called, setting up expanded state');
         currentScrollPosition = window.scrollY;
         
-        // Get the clicked image's position and dimensions
         const state = Flip.getState(img);
-        
-        // Set the expanded image source
         expandedImg.src = img.getAttribute('data-full-img') || img.src;
-        
-        // Show the container
         container.style.display = 'block';
-        
-        // Add class to body to prevent scroll
         document.body.classList.add('no-scroll-transition');
         
-        // Update cursor text
-        expandCursor.textContent = 'Collapse';
-        isExpanded = true;
+        cursorManager.isExpanded = true;
+        console.log('Adding hover listeners to expanded container');
         
-        // Fade out other images
+        container.addEventListener('mouseenter', handleExpandedContainerHover);
+        container.addEventListener('mouseleave', handleExpandedContainerLeave);
+        
         gsap.to('.ap-img-wrap:not(:has(img[data-flip-id="' + img.dataset.flipId + '"]))', {
             opacity: 0,
             duration: 0.5,
             ease: 'power2.inOut'
         });
 
-        // Show the container with animation
         setTimeout(() => {
             container.classList.add('visible');
-            
-            // Animate from the initial state
             Flip.from(state, {
                 duration: 0.5,
                 ease: "power2.inOut",
                 absolute: true,
                 onComplete: () => {
-                    // Add click listener to close
                     container.onclick = () => collapseImage(img);
                 }
             });
@@ -113,30 +115,26 @@ const initImageExpansion = () => {
     };
 
     const collapseImage = (targetImg) => {
-        // Get the current state
+        console.log('collapseImage called, cleaning up expanded state');
         const state = Flip.getState(expandedImg);
         
-        // Update cursor text
-        expandCursor.textContent = 'Expand';
-        isExpanded = false;
+        cursorManager.isExpanded = false;
         
-        // Hide the container
+        console.log('Removing hover listeners from expanded container');
+        container.removeEventListener('mouseenter', handleExpandedContainerHover);
+        container.removeEventListener('mouseleave', handleExpandedContainerLeave);
+        
         container.classList.remove('visible');
         
-        // Show other images
         gsap.to('.ap-img-wrap', {
             opacity: 1,
             duration: 0.5,
             ease: 'power2.inOut'
         });
         
-        // Remove no-scroll class
         document.body.classList.remove('no-scroll-transition');
-        
-        // Restore scroll position
         window.scrollTo(0, currentScrollPosition);
         
-        // Animate back to the original image
         Flip.from(state, {
             duration: 0.5,
             ease: "power2.inOut",
@@ -152,14 +150,13 @@ const initImageExpansion = () => {
     const hoverImages = document.querySelectorAll('.hover-image');
     hoverImages.forEach(image => {
         image.addEventListener('mouseenter', () => {
-            expandCursor.textContent = isExpanded ? 'Collapse' : 'Expand';
-            expandCursor.style.visibility = 'visible';
-            expandCursor.style.transform = 'scale(1)';
+            console.log('Original image hover detected');
+            cursorManager.showExpandCursor('Expand');
         });
         
         image.addEventListener('mouseleave', () => {
-            expandCursor.style.visibility = 'hidden';
-            expandCursor.style.transform = 'scale(0)';
+            console.log('Original image leave detected');
+            cursorManager.hideExpandCursor();
         });
     });
 
