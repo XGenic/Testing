@@ -113,12 +113,37 @@ const initImageExpansion = () => {
     });
 };
 
+// Scroll Snapping
+const initScrollSnapping = () => {
+    const sections = gsap.utils.toArray("section");
+    const lastSection = sections[sections.length - 1];
+    let snapProgress = 0;
+    let lastScrollTime = 0;
+    const SCROLL_COOLDOWN = 500;
+
+    // Only apply scroll snapping to the last section (vertical scroll)
+    ScrollTrigger.create({
+        trigger: lastSection,
+        start: "top top",
+        end: "bottom bottom",
+        snap: {
+            snapTo: "labelsDirectional",
+            duration: 1,
+            ease: "power2.inOut",
+            delay: 0.1
+        }
+    });
+};
+
 // Horizontal Scroll
 const initHorizontalScroll = () => {
     // Only initialize on desktop
     const horizontalM = gsap.matchMedia();
     
     horizontalM.add("(min-width: 991px)", () => {
+        const sections = gsap.utils.toArray("section");
+        const lastSectionIndex = sections.length - 1;
+        
         // Add the wrapper class for horizontal scrolling
         document.querySelector('.wrapper').classList.add('section-height');
         document.querySelector('.container').classList.add('track');
@@ -135,27 +160,45 @@ const initHorizontalScroll = () => {
         window.addEventListener("resize", setTrackHeights);
 
         // Main horizontal scroll animation
-        gsap.to(".container", {
+        const horizontalScroll = gsap.to(".container", {
             x: () => -(document.querySelector(".container").scrollWidth - window.innerWidth),
             ease: "none",
             scrollTrigger: {
                 trigger: ".wrapper",
                 pin: true,
                 scrub: 1,
+                snap: {
+                    snapTo: (value) => {
+                        // Calculate snap points based on section count (excluding last section)
+                        return Math.round(value * (sections.length - 2)) / (sections.length - 2);
+                    },
+                    duration: 1,
+                    ease: "power2.inOut",
+                    delay: 0.1
+                },
                 end: () => `+=${document.querySelector(".container").scrollWidth - window.innerWidth}`,
-                invalidateOnRefresh: true
+                invalidateOnRefresh: true,
+                onUpdate: (self) => {
+                    // Disable horizontal scroll when reaching the last section
+                    if (self.progress >= 0.99) {
+                        document.querySelector('.container').style.position = 'relative';
+                    } else {
+                        document.querySelector('.container').style.position = 'fixed';
+                    }
+                }
             }
         });
 
         // Section-specific animations
-        gsap.utils.toArray("section").forEach((section, i) => {
-            // Add scroll-triggered animations for each section
-            ScrollTrigger.create({
-                trigger: section,
-                start: "left center",
-                end: "right center",
-                toggleClass: "active"
-            });
+        sections.forEach((section, i) => {
+            if (i < lastSectionIndex) { // Only apply horizontal triggers to non-last sections
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "left center",
+                    end: "right center",
+                    toggleClass: "active"
+                });
+            }
         });
     });
 };
@@ -165,4 +208,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     initImageExpansion();
     initHorizontalScroll();
+    initScrollSnapping();
 });
