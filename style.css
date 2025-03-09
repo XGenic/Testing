@@ -1,20 +1,18 @@
 /* Base Styles */
 html {
-    background: #000;
+    background: #0E3741;
 }
 
 body {
     margin: 0;
     overflow-x: hidden;
-    overflow-y: hidden; /* Will be enabled for last section */
-    background: #000;
 }
 
 /* Cursor Styles */
 .cursor {
     position: fixed;
-    pointer-events: none;
-    z-index: 10000;
+    pointer-events: none !important;
+    z-index: 9999;
 }
 
 #circle {
@@ -34,7 +32,7 @@ body {
     padding: 3px 15px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: none;
     cursor: pointer;
     border-radius: 16px;
     margin-left: 25px;
@@ -63,41 +61,37 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 9999;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
     opacity: 0;
     transition: opacity 0.3s ease;
-    cursor: pointer;
+    pointer-events: none;
 }
 
 #expanded-image-container.visible {
     display: block;
     opacity: 1;
+    pointer-events: auto;
 }
 
 #expanded-image {
     position: absolute;
-    max-width: 90%;
-    max-height: 90%;
-    width: auto;
-    height: auto;
+    width: 90%;
+    height: 90%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     object-fit: contain;
-    pointer-events: none;
 }
 
 /* Layout Styles */
 .wrapper {
     position: relative;
-    background: #000;
 }
 
 .container {
     display: flex;
     width: 600vw;
-    background: #000;
 }
 
 .container .text {
@@ -113,17 +107,11 @@ body {
 section {
     width: 100vw;
     height: 100vh;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-section.active {
-    opacity: 1;
 }
 
 /* Section 1 */
 #sec1 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('assets/2560x1920/2560x1920_cg2023rzv - edited-01.jpg');
+    background-image: linear-gradient(rgba(54, 54, 54, 0.2), rgba(54, 54, 54, 0.2)), url('assets/2560x1920/2560x1920_cg2023rzv - edited-01.jpg');
     background-position: center;
     background-size: cover;
     width: 100vw;
@@ -276,6 +264,18 @@ section.active {
 #sec7 {
     width: 134vw;
     height: 120vh;
+}
+
+/* Add horizontal scroll classes */
+.section-height {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.track {
+    position: relative;
+    width: max-content;
+    will-change: transform;
 }
 
 /* Responsive Design */
