@@ -64,8 +64,14 @@ const initCursor = () => {
 const initImageExpansion = () => {
     const container = document.getElementById('expanded-image-container');
     const expandedImg = document.getElementById('expanded-image');
+    const expandCursor = document.getElementById('expand');
+    let isExpanded = false;
+    let currentScrollPosition = 0;
 
     const expandImage = (img) => {
+        // Store scroll position
+        currentScrollPosition = window.scrollY;
+        
         // Get the clicked image's position and dimensions
         const state = Flip.getState(img);
         
@@ -74,26 +80,61 @@ const initImageExpansion = () => {
         
         // Show the container
         container.style.display = 'block';
-        setTimeout(() => container.classList.add('visible'), 0);
-
-        // Animate from the initial state
-        Flip.from(state, {
+        
+        // Add class to body to prevent scroll
+        document.body.classList.add('no-scroll-transition');
+        
+        // Update cursor text
+        expandCursor.textContent = 'Collapse';
+        isExpanded = true;
+        
+        // Fade out other images
+        gsap.to('.ap-img-wrap:not(:has(img[data-flip-id="' + img.dataset.flipId + '"]))', {
+            opacity: 0,
             duration: 0.5,
-            ease: "power2.inOut",
-            absolute: true,
-            onComplete: () => {
-                // Add click listener to close
-                container.onclick = () => collapseImage(img);
-            }
+            ease: 'power2.inOut'
         });
+
+        // Show the container with animation
+        setTimeout(() => {
+            container.classList.add('visible');
+            
+            // Animate from the initial state
+            Flip.from(state, {
+                duration: 0.5,
+                ease: "power2.inOut",
+                absolute: true,
+                onComplete: () => {
+                    // Add click listener to close
+                    container.onclick = () => collapseImage(img);
+                }
+            });
+        }, 0);
     };
 
     const collapseImage = (targetImg) => {
         // Get the current state
         const state = Flip.getState(expandedImg);
         
+        // Update cursor text
+        expandCursor.textContent = 'Expand';
+        isExpanded = false;
+        
         // Hide the container
         container.classList.remove('visible');
+        
+        // Show other images
+        gsap.to('.ap-img-wrap', {
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power2.inOut'
+        });
+        
+        // Remove no-scroll class
+        document.body.classList.remove('no-scroll-transition');
+        
+        // Restore scroll position
+        window.scrollTo(0, currentScrollPosition);
         
         // Animate back to the original image
         Flip.from(state, {
@@ -106,6 +147,41 @@ const initImageExpansion = () => {
             }
         });
     };
+
+    // Add hover listeners to images
+    const hoverImages = document.querySelectorAll('.hover-image');
+    hoverImages.forEach(image => {
+        image.addEventListener('mouseenter', () => {
+            expandCursor.textContent = isExpanded ? 'Collapse' : 'Expand';
+            expandCursor.style.visibility = 'visible';
+            expandCursor.style.transform = 'scale(1)';
+        });
+        
+        image.addEventListener('mouseleave', () => {
+            expandCursor.style.visibility = 'hidden';
+            expandCursor.style.transform = 'scale(0)';
+        });
+    });
+
+    // Add cursor-following behavior for descriptions
+    document.querySelectorAll('.ap-img-wrap').forEach(wrap => {
+        const description = wrap.querySelector('.ap-img-description');
+        
+        wrap.addEventListener('mousemove', (e) => {
+            const rect = wrap.getBoundingClientRect();
+            const y = e.clientY - rect.top;
+            const percent = (y / rect.height) * 100;
+            
+            // Clamp the description position between 2% and 98% of the image height
+            const clampedPercent = Math.max(2, Math.min(98, percent));
+            
+            gsap.to(description, {
+                top: `${clampedPercent}%`,
+                duration: 0.2,
+                ease: "power2.out"
+            });
+        });
+    });
 
     // Add click listeners to expandable images
     document.querySelectorAll('.expandable-image').forEach(img => {
