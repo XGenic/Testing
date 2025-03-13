@@ -314,7 +314,7 @@ section {
 
 .video-section-top {
     position: absolute;
-    top: 20vh;
+    top: 23vh;
     z-index: 2;
     text-align: center;
 }
@@ -333,7 +333,7 @@ section {
 
 .video-heading {
     font-family: 'EB Garamond', serif;
-    font-size: 5em;
+    font-size: 6em;
     margin: 0;
     font-weight: 400;
     line-height: 1;
@@ -345,8 +345,8 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 35%;
-    height: 35%;
+    width: 40%;
+    height: 40%;
     overflow: hidden;
     z-index: 1;
 }
@@ -359,7 +359,7 @@ section {
 
 .video-section-bottom {
     position: absolute;
-    bottom: 12vh;
+    bottom: 23vh;
     z-index: 2;
     text-align: center;
     display: flex;
@@ -382,7 +382,7 @@ section {
 
 .video-text p {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.8em;
+    font-size: 1em;
     line-height: 1.6;
     color: rgb(68, 68, 68);
     margin: 0;
