@@ -36,7 +36,6 @@ const cursorManager = {
     isExpanded: false,
 
     showExpandCursor: (text) => {
-        console.log('showExpandCursor called with text:', text);
         gsap.to(cursorManager.circle, { scale: 0, duration: 0.1 });
         cursorManager.expand.textContent = text;
         gsap.to(cursorManager.expand, { 
@@ -45,15 +44,9 @@ const cursorManager = {
             display: 'block',
             duration: 0.1 
         });
-        console.log('Cursor state after show:', {
-            text: cursorManager.expand.textContent,
-            visibility: cursorManager.expand.style.visibility,
-            display: cursorManager.expand.style.display
-        });
     },
 
     hideExpandCursor: () => {
-        console.log('hideExpandCursor called');
         gsap.to(cursorManager.circle, { scale: 1, duration: 0.1 });
         gsap.to(cursorManager.expand, { 
             scale: 0, 
@@ -71,17 +64,14 @@ const initImageExpansion = () => {
     let currentScrollPosition = 0;
 
     const handleExpandedContainerHover = () => {
-        console.log('Expanded container hover detected');
         cursorManager.showExpandCursor('Collapse');
     };
 
     const handleExpandedContainerLeave = () => {
-        console.log('Expanded container leave detected');
         cursorManager.hideExpandCursor();
     };
 
     const expandImage = (img) => {
-        console.log('expandImage called, setting up expanded state');
         currentScrollPosition = window.scrollY;
         
         const state = Flip.getState(img);
@@ -90,7 +80,6 @@ const initImageExpansion = () => {
         document.body.classList.add('no-scroll-transition');
         
         cursorManager.isExpanded = true;
-        console.log('Adding hover listeners to expanded container');
         
         container.addEventListener('mouseenter', handleExpandedContainerHover);
         container.addEventListener('mouseleave', handleExpandedContainerLeave);
@@ -115,12 +104,10 @@ const initImageExpansion = () => {
     };
 
     const collapseImage = (targetImg) => {
-        console.log('collapseImage called, cleaning up expanded state');
         const state = Flip.getState(expandedImg);
         
         cursorManager.isExpanded = false;
         
-        console.log('Removing hover listeners from expanded container');
         container.removeEventListener('mouseenter', handleExpandedContainerHover);
         container.removeEventListener('mouseleave', handleExpandedContainerLeave);
         
@@ -150,12 +137,10 @@ const initImageExpansion = () => {
     const hoverImages = document.querySelectorAll('.hover-image');
     hoverImages.forEach(image => {
         image.addEventListener('mouseenter', () => {
-            console.log('Original image hover detected');
             cursorManager.showExpandCursor('Expand');
         });
         
         image.addEventListener('mouseleave', () => {
-            console.log('Original image leave detected');
             cursorManager.hideExpandCursor();
         });
     });
@@ -207,7 +192,7 @@ const initScrollSnapping = () => {
 const initHorizontalScroll = () => {
     // Only initialize on desktop
     const horizontalM = gsap.matchMedia();
-    
+   
     horizontalM.add("(min-width: 991px)", () => {
         const sections = gsap.utils.toArray("section");
         const lastSectionIndex = sections.length - 1;
@@ -249,14 +234,15 @@ const initHorizontalScroll = () => {
             scrollTrigger: {
                 trigger: ".wrapper",
                 pin: true,
-                scrub: 0.5,
-                snap: {
-                    snapTo: getSnapPoints(),
-                    duration: 0.5,
-                    ease: "power4.out",
-                    delay: 0,
-                    inertia: false
-                },
+                scrub: 0.7,
+                //ENABLE BACK TO SNAP SECTIONS
+                // snap: {
+                //     snapTo: getSnapPoints(),
+                //     duration: 1,
+                //     ease: "power4.out",
+                //     delay: 0,
+                //     inertia: true
+                // },
                 end: () => `+=${document.querySelector(".container").scrollWidth - window.innerWidth}`,
                 invalidateOnRefresh: true,
                 onUpdate: (self) => {
@@ -268,20 +254,68 @@ const initHorizontalScroll = () => {
                 }
             }
         });
-
-        // Section-specific animations
-        sections.forEach((section, i) => {
-            if (i < lastSectionIndex) {
-                ScrollTrigger.create({
-                    trigger: section,
-                    containerAnimation: horizontalScroll,
-                    start: "left left",
-                    end: "right left",
-                    toggleClass: "active"
-                });
+        
+        //SECTION 4 ANIMATION
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: "#sec4",
+                containerAnimation: horizontalScroll,
+                start: 'left left',
+                end: 'right right',
+                scrub: true,
+                //markers: true
             }
+        })
+        .to(".video-section-component",{
+            xPercent: 100,
+            ease: "none"
         });
 
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '#sec4',
+                containerAnimation: horizontalScroll,
+                start: "10% left",
+                end: "right right",
+                scrub: true,
+                markers: true,
+            }
+        })
+        .to (".video-container", {
+            width: "100%",
+            height: "100%",
+            marginTop: 0
+        })
+        .to("#background-video", {
+            width: "100%",
+            height: "100%",
+            marginTop: 0
+        });
+
+        gsap.timeline({
+        scrollTrigger: {
+            trigger: "#sec4",
+            containerAnimation: horizontalScroll,
+            start: "10% left",
+            end: "20% left",
+            scrub: true,
+            //markers: true
+            }
+        })
+        .to(".video-heading", {
+            y: "-50%",
+            rotationX: "60_cw",
+            opacity: 0,
+            ease: "none"
+            },0)
+        .to(".video-section-bottom",{ 
+            y: "50%", 
+            rotationX: "-60_ccw", 
+            opacity: 0, 
+            ease: "none" 
+            },0);
+        //-----SECTION 4 END-------
+        
         // Update snap points on resize
         window.addEventListener("resize", () => {
             horizontalScroll.scrollTrigger.snap = getSnapPoints();
