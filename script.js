@@ -323,10 +323,81 @@ const initHorizontalScroll = () => {
     });
 };
 
+// JavaScript for the vertical banner with GSAP
+document.addEventListener('DOMContentLoaded', () => {
+    // Make sure GSAP is loaded
+    if (typeof gsap === 'undefined') {
+      console.error('GSAP is not loaded');
+      return;
+    }
+  
+    // Clone banner items to create a continuous loop
+    const createInfiniteBanner = () => {
+      const bannerContent = document.querySelector('.banner-content');
+      const bannerItem = document.querySelector('.banner-item');
+      
+      if (!bannerContent || !bannerItem) return;
+      
+      // Calculate how many items we need to fill the banner
+      // Get the viewport height
+      const viewportHeight = window.innerHeight;
+      const itemHeight = bannerItem.offsetHeight;
+      
+      // We need enough items to fill the screen at least twice (for seamless looping)
+      const neededItems = Math.ceil((viewportHeight * 2) / itemHeight) + 2;
+      
+      // Clone the items
+      for (let i = 0; i < neededItems; i++) {
+        const clone = bannerItem.cloneNode(true);
+        bannerContent.appendChild(clone);
+      }
+      
+      // Set initial position
+      gsap.set(bannerContent, { y: 0 });
+      
+      // Get the total height of all items for animation
+      const totalHeight = bannerContent.offsetHeight / 2;
+      
+      // Create the infinite scroll animation
+      gsap.to(bannerContent, {
+        y: -totalHeight,
+        duration: 20, // Adjust speed here (seconds for one complete cycle)
+        ease: "none", // Linear movement
+        repeat: -1, // Infinite repeat
+        onRepeat: () => {
+          // Reset position when repeating (optional, the animation handles looping)
+          // gsap.set(bannerContent, { y: 0 });
+        }
+      });
+    };
+    
+    // Initialize after a short delay to ensure DOM is ready
+    setTimeout(createInfiniteBanner, 500);
+    
+    // Update on window resize (optional but helps with responsiveness)
+    window.addEventListener('resize', () => {
+      // Cancel existing animation
+      gsap.killTweensOf('.banner-content');
+      
+      // Remove all cloned items
+      const bannerContent = document.querySelector('.banner-content');
+      const bannerItems = document.querySelectorAll('.banner-item');
+      
+      // Keep the first item, remove the rest
+      for (let i = 1; i < bannerItems.length; i++) {
+        bannerContent.removeChild(bannerItems[i]);
+      }
+      
+      // Recreate the banner
+    //   createInfiniteBanner();
+    });
+  });
+
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     initImageExpansion();
     initHorizontalScroll();
     initScrollSnapping();
+    createInfiniteBanner();
 });
