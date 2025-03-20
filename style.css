@@ -314,7 +314,7 @@ section {
 
 .video-section-top {
     position: absolute;
-    top: 23vh;
+    top: 17vh;
     z-index: 2;
     text-align: center;
 }
@@ -361,7 +361,7 @@ section {
 
 .video-section-bottom {
     position: absolute;
-    bottom: 23vh;
+    bottom: 17vh;
     z-index: 2;
     text-align: center;
     display: flex;
