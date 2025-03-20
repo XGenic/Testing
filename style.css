@@ -153,6 +153,7 @@ section {
     background-color: rgb(247,244,239);
     width: 25vw;
     border-right: 1px solid gainsboro;
+    position: relative;
 }
 
 #sec2_head {
@@ -175,10 +176,11 @@ section {
 
 #sec2_bottom {
     max-height: 30svh;
-    margin-top: 20%;
-    margin-left: 2svw;
-    margin-right: 10svw;
+    left: 2svw;
+    right: 10svw;
     overflow: hidden;
+    position: absolute;
+    bottom: 10vh;
 }
 
 #sec2_bottom > img {
@@ -292,7 +294,7 @@ section {
     transform: scale(1.05);
 }
 
-/* Other Sections */
+/* SECTION 4 */
 #sec4 {
     background-color: rgb(247,244,239);
     width: 200vw;
@@ -333,7 +335,8 @@ section {
 
 .video-heading {
     font-family: 'EB Garamond', serif;
-    font-size: 6em;
+    /* font-size: 9em; */
+    font-size: clamp(6em, 8em, 10em);
     margin: 0;
     font-weight: 400;
     line-height: 1;
@@ -361,13 +364,13 @@ section {
 
 .video-section-bottom {
     position: absolute;
-    bottom: 17vh;
+    bottom: 19vh;
     z-index: 2;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40%;
+    /* width: 40%; */
 }
 
 .bottom-title {
