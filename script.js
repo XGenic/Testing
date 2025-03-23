@@ -27,6 +27,18 @@ const initCursor = () => {
         xTo(e.clientX);
         yTo(e.clientY);
     });
+    
+    // Initialize special cursor text for interactive elements
+    const bookNowButton = document.getElementById('book-now-button');
+    if (bookNowButton) {
+        cursorManager.showCursorText(bookNowButton, 'Adventure');
+    }
+    
+    // Add cursor interaction for price list items
+    const priceItems = document.querySelectorAll('.price-item');
+    priceItems.forEach(item => {
+        cursorManager.showCursorText(item, 'Book Now');
+    });
 };
 
 // Shared cursor state management
@@ -399,12 +411,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Recreate the banner
       createInfiniteBanner();
     });
-
-    // Add "Adventure" cursor text to the book now button
-    const bookNowButton = document.getElementById('book-now-button');
-    if (bookNowButton) {
-        cursorManager.showCursorText(bookNowButton, 'Adventure');
-    }
 });
 
 // Initialize everything
@@ -413,10 +419,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initImageExpansion();
     initHorizontalScroll();
     initScrollSnapping();
-    
-    // Add cursor interaction for price list items
-    const priceItems = document.querySelectorAll('.price-item');
-    priceItems.forEach(item => {
-        cursorManager.showCursorText(item, 'Book Now');
-    });
 });
