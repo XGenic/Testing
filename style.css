@@ -495,6 +495,28 @@ section {
     will-change: transform;
 }
 
+.book-now-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f59d9d;
+  color: white;
+  text-align: center;
+  line-height: 80px;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  z-index: 1000;
+  box-shadow: 4px 2px 5px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+}
+
+.book-now-button:hover {
+  background-color: orange;
+}
+
 /* Responsive Design */
 @media (max-width: 991px) {
     .container {

@@ -54,6 +54,14 @@ const cursorManager = {
             display: 'none',
             duration: 0.1 
         });
+    },
+    showCursorText: (element, text) => {
+        element.addEventListener('mouseenter', () => {
+            cursorManager.showExpandCursor(text);
+        });
+        element.addEventListener('mouseleave', () => {
+            cursorManager.hideExpandCursor();
+        });
     }
 };
 
@@ -389,9 +397,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       // Recreate the banner
-    //   createInfiniteBanner();
+      createInfiniteBanner();
     });
-  });
+
+    // Add "Adventure" cursor text to the book now button
+    const bookNowButton = document.getElementById('book-now-button');
+    if (bookNowButton) {
+        cursorManager.showCursorText(bookNowButton, 'Adventure');
+    }
+});
 
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
@@ -399,5 +413,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initImageExpansion();
     initHorizontalScroll();
     initScrollSnapping();
-    createInfiniteBanner();
 });
