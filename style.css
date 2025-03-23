@@ -166,6 +166,7 @@ section {
 #sec2_sub {
     font-family: 'EB Garamond', serif;
     margin-top: 0;
+    margin-bottom: 0;
     margin-left: 2svw;
     margin-right: 2svw;
     font-size: 2.2em;
@@ -176,11 +177,12 @@ section {
 
 #sec2_bottom {
     max-height: 30svh;
+    margin-top: 5vh;
     left: 2svw;
     right: 10svw;
     overflow: hidden;
     position: absolute;
-    bottom: 10vh;
+    bottom: 5vh;
 }
 
 #sec2_bottom > img {
