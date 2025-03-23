@@ -413,4 +413,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initImageExpansion();
     initHorizontalScroll();
     initScrollSnapping();
+    
+    // Add cursor interaction for price list items
+    const priceItems = document.querySelectorAll('.price-item');
+    priceItems.forEach(item => {
+        cursorManager.showCursorText(item, 'Book Now');
+    });
 });

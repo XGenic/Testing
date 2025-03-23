@@ -296,6 +296,89 @@ section {
     transform: scale(1.05);
 }
 
+/* Exception for the yacht mast image - prevent scaling on hover */
+.ap-img-wrap:hover .extending-image {
+    transform: none;
+}
+
+/* Price list container and components */
+.price-list-container {
+    position: relative;
+    overflow-y: visible !important; /* Override the overflow:hidden to allow image to extend */
+    overflow-x: hidden;
+}
+
+/* Container for the extending image */
+.extending-image-container {
+    position: absolute;
+    top: -5%; /* Adjust to control how far the image extends */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; /* Adjust width as needed */
+    z-index: 3;
+}
+
+.extending-image {
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Price list box */
+.price-list-box {
+    position: relative;
+    background-color: #f6fcfe;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 80px 20px 20px; /* Extra padding at top for the image */
+    margin-top: 260px; /* Space for the extending image */
+    /* height: calc(100% - 60px); */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+/* Price list heading */
+.price-list-box h3 {
+    font-family: 'EB Garamond', serif;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 1.5rem;
+    color: rgb(68, 68, 68);
+}
+
+/* Individual price items */
+.price-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.price-item:last-child {
+    border-bottom: none;
+}
+
+.package {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.5em;
+    color: #CB4B16; /* Using your cursor color for accent */
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+}
+
 /* SECTION 4 */
 #sec4 {
     background-color: rgb(247,244,239);
