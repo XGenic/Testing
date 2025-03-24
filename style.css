@@ -189,13 +189,13 @@ section {
     object-fit: cover;
     max-height: 20svh;
     width: 20svw;
-    transform: translateX(-25%);
+    transform: translateX(-16%);
 }
 
 #sec2_bottom p {
     font-family: 'Montserrat', sans-serif;
     margin-top: 0;
-    font-size: 0.8em;
+    font-size: 0.65rem;
     font-weight: 300;
     margin-right: 0;
 }
@@ -329,8 +329,8 @@ section {
     background-color: #f6fcfe;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 80px 20px 20px; /* Extra padding at top for the image */
-    margin-top: 260px; /* Space for the extending image */
+    padding: 80px 20px 10px; /* Extra padding at top for the image */
+    margin-top: 13vh; /* Space for the extending image */
     /* height: calc(100% - 60px); */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
@@ -341,14 +341,14 @@ section {
     font-family: 'EB Garamond', serif;
     text-align: center;
     font-size: 2em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: rgb(68, 68, 68);
 }
 
 /* Individual price items */
 .price-item {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid #eee;
 }
 
@@ -359,22 +359,22 @@ section {
 .package {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.0em;
     display: block;
     margin-bottom: 0.5rem;
 }
 
 .price {
     font-family: 'EB Garamond', serif;
-    font-size: 1.5em;
+    font-size: 1.4em;
     color: #CB4B16; /* Using your cursor color for accent */
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
 }
 
 .description {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: #666;
     margin: 0;
 }
@@ -425,7 +425,7 @@ section {
     margin: 0;
     font-weight: 400;
     line-height: 1;
-    color: rgb(68, 68, 68);
+    color: white;
 }
 
 .video-container {
