@@ -298,7 +298,7 @@ const initHorizontalScroll = () => {
                 start: "10% left",
                 end: "right right",
                 scrub: true,
-                markers: true,
+                // markers: true,
             }
         })
         .to (".video-container", {
@@ -335,6 +335,21 @@ const initHorizontalScroll = () => {
             ease: "none" 
             },0);
         //-----SECTION 4 END-------
+
+        //Section 2 Text Fill
+        gsap.to("#sec2_sub", {
+            color: "blue",
+            // backgroundPositionX: "0%",
+            // stagger: 1,
+            scrollTrigger: {
+                trigger: "#sec2",
+                containerAnimation: horizontalScroll,
+                markers: true,
+                scrub: false,
+                start: "right right",
+                // end: "90% left"
+            }
+            });
         
         // Update snap points on resize
         window.addEventListener("resize", () => {
@@ -412,6 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
       createInfiniteBanner();
     });
 });
+
 
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
