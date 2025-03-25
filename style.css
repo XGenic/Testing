@@ -245,6 +245,8 @@ section {
 .ap-img-wrap._1, .ap-img-wrap._4 {
     flex: 0 0 30%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Center section container */
@@ -332,10 +334,12 @@ section {
 
 /* Container for the extending image */
 .extending-image-container {
-    position: absolute;
-    top: -5%; /* Adjust to control how far the image extends */
+    /* position: absolute;
+    top: -5%; 
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
+    display: flex;
+    flex-direction: column;
     width: 100%; /* Adjust width as needed */
     z-index: 3;
 }
@@ -347,15 +351,15 @@ section {
 
 /* Price list box */
 .price-list-box {
+    display: flex;
+    flex-direction: column;
     position: relative;
     background-color: #f6fcfe;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 80px 20px 10px; /* Extra padding at top for the image */
-    margin-top: 13vh; /* Space for the extending image */
-    /* height: calc(100% - 60px); */
+    padding: 0px 20px 10px;
+    /* margin-top: 13vh; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
 }
 
 /* Price list heading */
@@ -364,6 +368,7 @@ section {
     text-align: center;
     font-size: 2em;
     margin-bottom: 1rem;
+    margin-top: 0.5rem;
     color: rgb(68, 68, 68);
 }
 
