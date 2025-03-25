@@ -111,6 +111,8 @@ section {
 #sec1 {
     background-image: linear-gradient(rgba(54, 54, 54, 0.2), rgba(54, 54, 54, 0.2)), url('assets/2560x1920/2560x1920_cg2023rzv - edited-01.jpg');
     background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     background-size: cover;
     width: 100vw;
 }
@@ -153,22 +155,37 @@ section {
     background-color: rgb(247,244,239);
     width: 25vw;
     border-right: 1px solid gainsboro;
-    position: relative;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 7.25em 2.5em 3.3125em;
+    height: 100vh;
+    max-height: 100vh;
+    box-sizing: border-box;
+}
+
+#sec2_top{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 #sec2_head {
     font-family: 'Montserrat', sans-serif;
-    margin-top: 10svh;
-    margin-left: 2svw;
+    /* margin-top: 10svh;
+    margin-left: 2svw; */
     font-size: 0.6em;
 }
 
 #sec2_sub {
     font-family: 'EB Garamond', serif;
-    margin-top: 0;
-    margin-bottom: 0;
+    /* margin-bottom: 0;
     margin-left: 2svw;
-    margin-right: 2svw;
+    margin-right: 2svw; */
+    margin-top: 0;
     font-size: 2.2em;
     font-weight: 400;
     line-height: 0.9;
@@ -176,28 +193,33 @@ section {
 }
 
 #sec2_bottom {
-    max-height: 30svh;
+    /* max-height: 30svh;
     margin-top: 5vh;
     left: 2svw;
     right: 10svw;
     overflow: hidden;
     position: absolute;
-    bottom: 5vh;
+    bottom: 5vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 20.25em
 }
 
 #sec2_bottom > img {
     object-fit: cover;
     max-height: 20svh;
-    width: 20svw;
-    transform: translateX(-16%);
+    max-width: 20.25em;
+    /* transform: translateX(-16%); */
 }
 
 #sec2_bottom p {
     font-family: 'Montserrat', sans-serif;
     margin-top: 0;
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     font-weight: 300;
-    margin-right: 0;
+    /* margin-right: 0; */
 }
 
 /* Section 3 */
