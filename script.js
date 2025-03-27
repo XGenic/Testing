@@ -338,15 +338,16 @@ const initHorizontalScroll = () => {
 
         //Section 2 Text Fill
         gsap.to("#sec2_sub", {
-            color: "blue",
+            color: "orange",
             // backgroundPositionX: "0%",
             // stagger: 1,
             scrollTrigger: {
                 trigger: "#sec2",
                 containerAnimation: horizontalScroll,
                 markers: true,
-                scrub: false,
-                start: "right right",
+                scrub: true,
+                start: "left center",
+                end: "+=800"
                 // end: "90% left"
             }
             });
