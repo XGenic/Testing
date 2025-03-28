@@ -616,6 +616,7 @@ section {
   color: white;
   text-align: center;
   line-height: 80px;
+  font-size: 1.3em;
   text-decoration: none;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   z-index: 1000;
