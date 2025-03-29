@@ -5,142 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yacht Add-ons Cards</title>
     <style>
-        .card {
-            width: 320px;
-            background-color: rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-            padding: 0; /* Removed padding from the card */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-          }
-          
-          .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-          }
-          
-          .card-image {
-            width: 100%;
-            height: auto;
-            border-radius: 20px 20px 0 0;
-            object-fit: cover;
-            margin-bottom: 0;
-            aspect-ratio: 1 / 1;
-          }
-          
-          .card-image-wrapper {
-              position: relative;
-              width: 100%;
-              border-radius: 20px 20px 0 0;
-              overflow: hidden;
-          }
-          
-          .card-gradient-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 60%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            border-radius: 0 0 20px 20px;
-          }
-          
-          
-          .card-title-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            padding: 20px; /* Added padding to the title container */
-            position: relative;
-            z-index: 1;
-          }
-          
-          
-          .card-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 0;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-          }
-          
-          .card-price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffffff;
-            padding: 8px 16px;
-            border-radius: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-          }
-          
-          
-          .card-description {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 20px;
-            padding: 20px; /* Added padding */
-            position: relative;
-            z-index: 1;
-          }
-          
-          .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-            padding: 20px; /* Added padding */
-            position: relative;
-            z-index: 1;
-          }
-          
-          .card-tag {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-size: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-          }
-          
-          .card-button {
-            background-image: linear-gradient(to right, #a855f7, #6366f1);
-            color: #ffffff;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-image 0.3s ease, transform 0.2s ease;
-            width: calc(100% - 40px);
-            display: block;
-            text-align: center;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-            position: relative;
-            z-index: 1;
-          }
-          
-          .card-button:hover {
-            background-image: linear-gradient(to right, #9333ea, #4f46e5);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-          }
-          
-          .card-button:active {
-            transform: translateY(0);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-          }
-    </style>
+      .card {
+        width: 320px;
+        background-color: rgba(255, 255, 255, 0.06);
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Changed to flex-end */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+        height: 400px;
+      }
+      
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+      }
+      
+      .card-image {
+        width: 100%;
+        height: 100%; /* Changed to 100% */
+        border-radius: 20px; /* Make sure to have borderRadius */
+        object-fit: cover;
+        margin-bottom: 0;
+        position: absolute; /* Make image absolute */
+        top: 0;
+        left: 0;
+        z-index: 0;
+      }
+      
+      .card-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      
+      .card-gradient-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        border-radius: 0 0 20px 20px;
+        z-index: 1;
+      }
+      
+      
+      .card-title-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        padding: 20px;
+        position: relative;
+        z-index: 2;
+      }
+      
+      
+      .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #000; /* Changed to black */
+        margin-bottom: 0;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* added text shadow */
+      }
+      
+      .card-price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #000; /* Changed to black */
+        padding: 8px 16px;
+        border-radius: 20px;
+        background-color: rgba(255, 255, 255, 0.8); /* changed background */
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+      }
+      
+      
+      .card-description {
+        font-size: 16px;
+        color: #000; /* Changed to black */
+        line-height: 1.6;
+        margin-bottom: 20px;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+        text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+      }
+      
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .card-tag {
+        background-color: rgba(255, 255, 255, 0.5); /* changed background */
+        color: #000;
+        padding: 6px 12px;
+        border-radius: 16px;
+        font-size: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+      }
+      
+      .card-button {
+        background-image: linear-gradient(to right, #a855f7, #6366f1);
+        color: #ffffff;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-image 0.3s ease, transform 0.2s ease;
+        width: calc(100% - 40px);
+        display: block;
+        text-align: center;
+        margin: 0 auto 20px auto;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        position: relative;
+        z-index: 2;
+      }
+      
+      .card-button:hover {
+        background-image: linear-gradient(to right, #9333ea, #4f46e5);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      
+      .card-button:active {
+        transform: translateY(0);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      }
+      </style>
 </head>
 <body>
     <div class="card">

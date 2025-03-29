@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yacht Add-ons Cards</title>
+    <style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: left;
+  }
+  
+  /* Card container */
+  .reservation-card {
+    position: relative;
+    width: 300px; /* Adjusted to match new design */
+    height: 500px; /* Adjusted to match new design */
+    overflow: hidden;
+    border-radius: 30px; /* Increased radius from new design */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  
+  /* Background image */
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: no-repeat center/cover; /* Image set inline in HTML */
+    z-index: 1;
+  }
+  
+  /* Content (text and button) */
+  .content {
+    position: relative;
+    z-index: 10; /* Above blur layers */
+    padding: 20px;
+    color: white;
+    text-align: center;
+    top: 55%;
+    /* transform: translateY(-50%); */
+  }
+  
+  .content h2 {
+    font-size: 20px; /* From new design */
+    margin-bottom: 5px; /* From new design */
+  }
+  
+  .content .price {
+    background: rgba(0, 0, 0, 0.1); /* From new design */
+    padding: 5px 10px; /* From new design */
+    border-radius: 10px; /* From new design */
+    display: inline-block; /* From new design */
+  }
+  
+  .content .description {
+    font-size: 14px; /* From new design */
+    margin: 10px 0; /* From new design */
+  }
+  
+  .content .tags {
+    display: flex; /* From new design */
+    gap: 10px; /* From new design */
+    margin-bottom: 10px; /* From new design */
+  }
+  
+  .content .tag {
+    background: rgba(0, 0, 0, 0.1); /* From new design */
+    padding: 5px 10px; /* From new design */
+    border-radius: 10px; /* From new design */
+    font-size: 12px; /* From new design */
+  }
+  
+  .content .reserve-btn {
+    width: 100%; /* From new design */
+    background: white; /* From new design */
+    color: black; /* From new design */
+    padding: 10px; /* From new design */
+    text-align: center; /* From new design */
+    border-radius: 90px; /* From new design */
+    cursor: pointer; /* From new design */
+    font-weight: bold; /* From new design */
+  }
+  
+  .content .reserve-btn:hover {
+    background: pink; /* From new design */
+  }
+  
+  /* Gradient blur effect (unchanged from previous strong blur) */
+  .gradient-blur {
+    position: absolute;
+    z-index: 5;
+    inset: auto 0 0 0;
+    height: 50%;
+    pointer-events: none;
+  }
+  
+  .gradient-blur > div,
+  .gradient-blur::before,
+  .gradient-blur::after {
+    position: absolute;
+    inset: 0;
+  }
+  
+  .gradient-blur::before {
+    content: "";
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 1) 40%,
+      rgba(0, 0, 0, 0) 60%
+    );
+  }
+  
+  .gradient-blur > div:nth-of-type(1) {
+    z-index: 2;
+    backdrop-filter: blur(20px);
+    mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 1) 40%,
+      rgba(0, 0, 0, 1) 60%,
+      rgba(0, 0, 0, 0) 80%
+    );
+  }
+  
+  .gradient-blur > div:nth-of-type(2) {
+    z-index: 3;
+    backdrop-filter: blur(40px);
+    mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 1) 60%,
+      rgba(0, 0, 0, 1) 80%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  
+  .gradient-blur > div:nth-of-type(3) {
+    z-index: 4;
+    backdrop-filter: blur(80px);
+    mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 1) 80%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+  
+  .gradient-blur > div:nth-of-type(4) {
+    z-index: 5;
+    backdrop-filter: blur(120px);
+    mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 80%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+  
+  .gradient-blur > div:nth-of-type(5) {
+    z-index: 6;
+    backdrop-filter: blur(160px);
+    mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 90%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+  
+  .gradient-blur::after {
+    content: "";
+    z-index: 7;
+    backdrop-filter: blur(200px);
+    mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 95%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+    </style>
+</head>
+<body>
+    <div class="reservation-card">
+        <div class="background-image" style="background-image: url('https://cloudfront.wheretostay.com/prop_photos/3000/3160/1800x0/spa_chalet_zuna_02092021_025910637.jpeg?width=1800&fit=contain');"></div>
+        <div class="content">
+          <h2>Swiss Alps Retreat <span class="price">$710</span></h2>
+          <p class="description">Escape to a cozy alpine retreat with breathtaking views of snow-capped peaks and pristine valleys.</p>
+          <div class="tags">
+            <span class="tag">Luxury Stay</span>
+            <span class="tag">2 Day stay</span>
+          </div>
+          <div class="reserve-btn">Reserve</div>
+        </div>
+        <div class="gradient-blur">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+</body>
+</html>
