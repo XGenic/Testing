@@ -344,13 +344,28 @@ const initHorizontalScroll = () => {
             scrollTrigger: {
                 trigger: "#sec2",
                 containerAnimation: horizontalScroll,
-                markers: true,
+                //markers: true,
                 scrub: true,
                 start: "left center",
                 end: "+=800"
                 // end: "90% left"
             }
             });
+        
+        //PROGRESS FILL
+        gsap.to(".progress-bar", {
+            width: "100%",
+            ease: "none",
+            scrollTrigger: {
+                containerAnimation: horizontalScroll,
+                trigger: ".scrollx",
+                scrub: true,
+                start: "left left",
+                end: () => {
+                    const scrollContainer = document.querySelector(".scrollx");
+                    return "+=" + (scrollContainer.scrollWidth - window.innerWidth);
+                },
+            }});
         
         // Update snap points on resize
         window.addEventListener("resize", () => {
