@@ -628,6 +628,8 @@ section {
     will-change: transform;
 }
 
+
+/* BOOK NOW BUTTON */
 .book-now-button {
   position: fixed;
   bottom: 20px;
@@ -650,6 +652,34 @@ section {
 .book-now-button:hover {
   background-color: orange;
 }
+
+/* PROGRESS BAR */
+.progress-container {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+}
+
+.progress-bar {
+    position: relative;
+    height: 100%;
+    width: 0%;
+    background-color: pink;
+}
+
+/* Update cursor text for expanded state */
+#expand.expanded {
+    visibility: hidden;
+}
+
+#expand.collapsed {
+    visibility: visible;
+}
+
 
 /* Responsive Design */
 @media (max-width: 991px) {
@@ -677,29 +707,5 @@ section {
     }
 }
 
-/* Update cursor text for expanded state */
-#expand.expanded {
-    visibility: hidden;
-}
-
-#expand.collapsed {
-    visibility: visible;
-}
 
 
-.progress-container {
-    position: fixed;
-    top: 20px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: rgba(255, 255, 255, 0.8);
-    z-index: 1000;
-}
-
-.progress-bar {
-    position: relative;
-    height: 100%;
-    width: 0%;
-    background-color: pink;
-}
