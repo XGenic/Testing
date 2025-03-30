@@ -583,6 +583,29 @@ section {
     background-color: #444;
     position: relative;
   }
+
+  .sec5_text{
+    padding-left: 110px;
+    padding-right: 20px;
+    padding-top: 12em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #sec5_head{
+    text-align: center;
+    font-family: 'EB Garamond', serif;
+    font-size: 2.2em;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  #sec5_sub{
+    /* font-family: 'EB Garamond', serif; */
+    font-size: 1em;
+  }
   
 
 #sec6 {
