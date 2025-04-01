@@ -365,6 +365,12 @@ const initHorizontalScroll = () => {
                     const scrollContainer = document.querySelector(".scrollx");
                     return "+=" + (scrollContainer.scrollWidth - window.innerWidth);
                 },
+                onUpdate: self => {
+                    // Optional: Rocking effect to the boat.
+                    gsap.to(".yacht-icon", {
+                        rotation: Math.sin(self.progress * Math.PI * 6) * 8, // first value dictates how often, second value is the angle
+                        duration: 0.1,
+                    });}
             }});
         
         // Update snap points on resize
