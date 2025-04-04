@@ -450,6 +450,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Cardflip in Section 4
+document.addEventListener('DOMContentLoaded', () => {
+    // Get references to elements
+    const cardWrapper = document.querySelector('.card-wrapper');
+    const flipArrow = document.querySelector('.flip-arrow');
+    const flipBackArrow = document.querySelector('.flip-back-arrow');
+    
+    // Set initial GSAP states
+    gsap.set('.front-face', { rotationY: 0 });
+    gsap.set('.back-face', { rotationY: -180 });
+    
+    // Function to flip to the back
+    function flipToBack() {
+        gsap.to(cardWrapper, {
+            rotationY: 180,
+            duration: 0.8,
+            ease: "power2.inOut"
+        });
+    }
+    
+    // Function to flip to the front
+    function flipToFront() {
+        gsap.to(cardWrapper, {
+            rotationY: 0,
+            duration: 0.5,
+            ease: "power2.inOut"
+        });
+    }
+    
+    // Add event listeners
+    flipArrow.addEventListener('click', flipToBack);
+    flipBackArrow.addEventListener('click', flipToFront);
+    
+    // Optional: Add hover animation for the arrows
+    gsap.to('.flip-arrow svg', {
+        x: 3,
+        duration: 0.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+        paused: true
+    });
+    
+    flipArrow.addEventListener('mouseenter', () => {
+        gsap.to('.flip-arrow svg', { x: 3, duration: 0.3 });
+    });
+    
+    flipArrow.addEventListener('mouseleave', () => {
+        gsap.to('.flip-arrow svg', { x: 0, duration: 0.3 });
+    });
+    
+    flipBackArrow.addEventListener('mouseenter', () => {
+        gsap.to('.flip-back-arrow svg', { x: -3, duration: 0.3 });
+    });
+    
+    flipBackArrow.addEventListener('mouseleave', () => {
+        gsap.to('.flip-back-arrow svg', { x: 0, duration: 0.3 });
+    });
+});
 
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
