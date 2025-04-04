@@ -107,6 +107,11 @@ section {
     height: 100vh;
 }
 
+
+
+
+
+
 /* Section 1 */
 #sec1 {
     background-image: linear-gradient(rgba(54, 54, 54, 0.2), rgba(54, 54, 54, 0.2)), url('assets/2560x1920/2560x1920_cg2023rzv - edited-01.jpg');
@@ -149,6 +154,53 @@ section {
     bottom: 25svh;
     left: -39svw;
 }
+
+/* Book Now Button Styles */
+.book-now-container {
+    position: relative;
+    margin-top: 2rem;
+    opacity: 0; /* Initial state, will be animated with GSAP */
+    transform: translateY(50px);
+    justify-self: center;
+}
+
+.book-now-btn {
+    background: linear-gradient(135deg, #e0b67c, #c9984b);
+    color: #fff;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.book-now-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* Button glow effect */
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    z-index: -1;
+    opacity: 0;
+}
+
+
+
+
 
 /* Section 2 */
 #sec2 {

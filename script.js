@@ -510,6 +510,61 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+//Book Now Button Section 1
+window.addEventListener('DOMContentLoaded', () => {
+    // Create a GSAP timeline for the button animation
+    const buttonTimeline = gsap.timeline();
+    
+    // Initial button animation
+    buttonTimeline
+        // Rise up from the bottom of its container div while fading in
+        .to('.book-now-container', {
+            opacity: 1,
+            y: 0, // Rise up to its normal position
+            duration: 1.2,
+            ease: 'power2.out'
+        })
+        // Add a subtle "pop" effect
+        .to('.book-now-btn', {
+            scale: 1.1,
+            duration: 0.3,
+            ease: 'back.out(1.7)'
+        })
+        .to('.book-now-btn', {
+            scale: 1,
+            duration: 0.2,
+            ease: 'power2.out'
+        });
+        
+    // Create a separate timeline for the continuous subtle pulse animation
+    const pulseTimeline = gsap.timeline({
+        repeat: -1,  // Infinite repetition
+        repeatDelay: 2, // Delay between repeats
+        delay: 1.5    // Start after the initial animation
+    });
+    
+    pulseTimeline
+        // Subtle glow effect
+        .to('.btn-glow', {
+            opacity: 0.8,
+            duration: 0.8,
+            ease: 'power1.inOut'
+        })
+        .to('.btn-glow', {
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power1.inOut'
+        })
+        // Very subtle scale animation
+        .to('.book-now-btn', {
+            scale: 1.03,
+            duration: 0.8,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: 1
+        }, "-=1.6");
+});
+
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
     initCursor();
