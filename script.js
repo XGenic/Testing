@@ -372,6 +372,19 @@ const initHorizontalScroll = () => {
                         duration: 0.1,
                     });}
             }});
+
+        // Background parallax - moves slower than scroll
+        gsap.to("#bg-parallax", {
+            x: "10%", // Background moves at 20% of scroll speed
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".sec1",
+                containerAnimation: horizontalScroll,
+                scrub: true,
+                start: "top top",
+                end: "right left"
+            }
+        });
         
         // Update snap points on resize
         window.addEventListener("resize", () => {
