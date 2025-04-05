@@ -186,6 +186,7 @@ section {
 }
 
 .book-now-btn {
+    display: inline-block;
     background: linear-gradient(135deg, #e0b67c, #c9984b);
     color: #fff;
     font-size: 1.4rem;
@@ -200,6 +201,7 @@ section {
     transition: transform 0.3s;
     text-transform: uppercase;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .book-now-btn:hover {

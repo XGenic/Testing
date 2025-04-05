@@ -35,10 +35,10 @@ const initCursor = () => {
     }
     
     // Add cursor interaction for price list items
-    const priceItems = document.querySelectorAll('.price-item');
-    priceItems.forEach(item => {
-        cursorManager.showCursorText(item, 'Book Now');
-    });
+    // const priceItems = document.querySelectorAll('.price-item');
+    // priceItems.forEach(item => {
+    //     cursorManager.showCursorText(item, 'Book Now');
+    // });
 };
 
 // Shared cursor state management
