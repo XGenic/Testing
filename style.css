@@ -108,72 +108,70 @@ section {
 }
 
 
-
-
-
-
 /* Section 1 */
 #sec1 {
-    /* background-image: linear-gradient(rgba(54, 54, 54, 0.2), rgba(54, 54, 54, 0.2)), url('assets/2560x1920/2560x1920_cg2023rzv - edited-01.jpg');
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover; */
     width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Changed from center to flex-start */
+    padding-top: 15vh; /* Add padding at the top to position content 20% from top */
+    overflow: hidden;
 }
 
- /* Parallax Elements */
- .parallax-bg {
+/* Parallax Elements */
+.parallax-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-image: linear-gradient(rgba(54, 54, 54, 0.2), rgba(54, 54, 54, 0.2)), url('assets/2560x1920/2560x1920_cg2023rzv - edited-01.jpg');
-    background-size: auto;
-    background-position: left;
+    background-size: cover;
+    background-position: center;
     opacity: 0.75;
     z-index: -1;
 }
 
-/* Elements to parallax */
+/* Content wrapper using flexbox for centering */
 .content-wrapper {
-    position: relative;
-    /* width: 80%;
-    max-width: 1200px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Changed from center to flex-start */
+    width: 80%;
+    max-width: 1200px;
+    padding: 2rem;
 }
 
 #sec1 p {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    margin-left: 40svw;
-    margin-right: 40svw;
     font-weight: 700;
     font-size: 0.8em;
-    margin-top: 1svh;
+    margin-top: 1rem;
     color: white;
+    width: 60%;
 }
 
 #sec1 h1 {
     font-family: 'EB Garamond', serif;
     text-align: center;
     font-size: 3.5em;
-    margin-top: 10svh;
-    margin-left: 30svw;
-    margin-right: 30svw;
-    margin-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 1rem;
     font-weight: 400;
     line-height: 0.9;
     color: white;
+    width: 70%;
 }
 
 .contact {
-    content: '';
-    border-radius: 80%;
-    color: white;
     position: absolute;
-    bottom: 25svh;
-    left: -39svw;
+    bottom: 15%;
+    left: 2%;
+    color: white;
 }
 
 /* Book Now Button Styles */
@@ -182,7 +180,9 @@ section {
     margin-top: 2rem;
     opacity: 0; /* Initial state, will be animated with GSAP */
     transform: translateY(50px);
-    justify-self: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .book-now-btn {
@@ -202,25 +202,26 @@ section {
     text-transform: uppercase;
     font-weight: 600;
     text-decoration: none;
+    z-index: 2; /* Add z-index to ensure button stays above the glow */
 }
 
 .book-now-btn:hover {
     transform: translateY(-3px);
 }
 
-/* Button glow effect */
+/* Button glow effect - Fixed positioning */
 .btn-glow {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the glow precisely */
+    background: rgba(224, 182, 124, 0.4); /* Use a color that matches the button */
+    border-radius: 8px; /* Slightly larger radius than the button */
+    z-index: 1; /* Place below the button but above other content */
     opacity: 0;
+    pointer-events: none; /* Ensure it doesn't interfere with button clicks */
+    filter: blur(8px); /* Add blur effect for a softer glow */
 }
-
 
 
 

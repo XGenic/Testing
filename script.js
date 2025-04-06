@@ -385,6 +385,18 @@ const initHorizontalScroll = () => {
                 end: "right left"
             }
         });
+
+        gsap.to(".content-wrapper", {
+            x: "-50%", // Background moves at 20% of scroll speed
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".sec1",
+                containerAnimation: horizontalScroll,
+                scrub: true,
+                start: "top top",
+                end: "right left"
+            }
+        });
         
         // Update snap points on resize
         window.addEventListener("resize", () => {
@@ -527,6 +539,13 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('DOMContentLoaded', () => {
     // Create a GSAP timeline for the button animation
     const buttonTimeline = gsap.timeline();
+    const bookNowBtn = document.querySelector('.book-now-btn');
+    const btnGlow = document.querySelector('.btn-glow');
+
+    gsap.set(btnGlow, {
+        width: bookNowBtn.offsetWidth * 1.2,
+        height: bookNowBtn.offsetHeight * 1.2
+    });
     
     // Initial button animation
     buttonTimeline
