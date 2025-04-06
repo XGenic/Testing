@@ -397,6 +397,18 @@ const initHorizontalScroll = () => {
                 end: "right left"
             }
         });
+
+        // gsap.to("#sec55-bg", {
+        //     x: "10%", 
+        //     ease: "none",
+        //     scrollTrigger: {
+        //         trigger: ".sec5-5",
+        //         containerAnimation: horizontalScroll,
+        //         scrub: true,
+        //         start: "top top",
+        //         end: "right left"
+        //     }
+        // });
         
         // Update snap points on resize
         window.addEventListener("resize", () => {
@@ -543,8 +555,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const btnGlow = document.querySelector('.btn-glow');
 
     gsap.set(btnGlow, {
-        width: bookNowBtn.offsetWidth * 1.2,
-        height: bookNowBtn.offsetHeight * 1.2
+        width: bookNowBtn.offsetWidth * 1.1,
+        height: bookNowBtn.offsetHeight * 1.1
     });
     
     // Initial button animation

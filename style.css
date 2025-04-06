@@ -89,7 +89,7 @@ body {
 
 .container {
     display: flex;
-    width: 558vw;
+    width: 658vw;
 }
 
 .container .text {
@@ -130,7 +130,7 @@ section {
     background-image: linear-gradient(rgba(54, 54, 54, 0.2), rgba(54, 54, 54, 0.2)), url('assets/2560x1920/2560x1920_cg2023rzv - edited-01.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.75;
+    opacity: 0.95;
     z-index: -1;
 }
 
@@ -601,6 +601,7 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
     /* padding: 2rem; *THIS OFFSET THE WHOLE SECTION FOR SOME REASON**/
 }
 
@@ -802,6 +803,29 @@ section {
   
 
 
+/* SECTION 5-5 */
+  #sec5-5 {
+    /* background-color: seagreen; */
+    background-image: url('assets/2560x1920/2560x1920_cg2023rzv - edited-04.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* .sec55-bg {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/2560x1920/2560x1920_cg2023rzv - edited-04.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    z-index: 0;
+} */
+
+
+
 
   /* SECTION 6 */
 #sec6 {
@@ -926,10 +950,6 @@ section {
 
 
 
-
-/* #sec7 {
-    height: 120vh;
-} */
 
 
 
