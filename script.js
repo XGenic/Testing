@@ -266,7 +266,7 @@ const initHorizontalScroll = () => {
                 end: () => `+=${document.querySelector(".container").scrollWidth - window.innerWidth}`,
                 invalidateOnRefresh: true,
                 onUpdate: (self) => {
-                    if (self.progress >= 0.999) {
+                    if (self.progress >= 1) {
                         document.querySelector('.container').style.position = 'relative';
                     } else {
                         document.querySelector('.container').style.position = 'fixed';
