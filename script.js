@@ -398,17 +398,6 @@ const initHorizontalScroll = () => {
             }
         });
 
-        // gsap.to("#sec55-bg", {
-        //     x: "10%", 
-        //     ease: "none",
-        //     scrollTrigger: {
-        //         trigger: ".sec5-5",
-        //         containerAnimation: horizontalScroll,
-        //         scrub: true,
-        //         start: "top top",
-        //         end: "right left"
-        //     }
-        // });
         
         // Update snap points on resize
         window.addEventListener("resize", () => {
@@ -608,6 +597,73 @@ window.addEventListener('DOMContentLoaded', () => {
             repeat: 1
         }, "-=1.6");
 });
+
+
+
+
+//Typewriter Effect
+const phrases = ["Set Sail", "Luxury Awaits", "Explore the Seas"];
+let phraseIndex = 0;
+const typewriterElement = document.getElementById("typewriter");
+
+function typePhrase(phrase, callback) {
+  let i = 0;
+  typewriterElement.textContent = ""; // Clear previous text
+
+  function typeNextLetter() {
+    if (i < phrase.length) {
+      typewriterElement.textContent += phrase.charAt(i);
+      i++;
+      setTimeout(typeNextLetter, 100); // Speed of typing (100ms per letter)
+    } else {
+      setTimeout(callback, 2000); // Pause after typing (2 seconds)
+    }
+  }
+  typeNextLetter();
+}
+
+function erasePhrase(callback) {
+  let text = typewriterElement.textContent;
+
+  function eraseNextLetter() {
+    if (text.length > 0) {
+      text = text.slice(0, -1);
+      typewriterElement.textContent = text;
+      setTimeout(eraseNextLetter, 50); // Speed of erasing (50ms per letter)
+    } else {
+      setTimeout(callback, 500); // Brief pause before next phrase (0.5 seconds)
+    }
+  }
+  eraseNextLetter();
+}
+
+function startTypewriter() {
+  const currentPhrase = phrases[phraseIndex % phrases.length];
+  typePhrase(currentPhrase, () => {
+    erasePhrase(() => {
+      phraseIndex++;
+      startTypewriter(); // Loop to next phrase
+    });
+  });
+}
+
+// Start the animation
+startTypewriter();
+
+// Tie it to your horizontal scroll with ScrollTrigger
+// gsap.timeline({
+//   scrollTrigger: {
+//     trigger: "#sec5-5",
+//     containerAnimation: horizontalScroll, // Your existing horizontal scroll animation
+//     start: "left right",
+//     end: "right left",
+//     toggleActions: "play pause resume pause" // Play only when in view
+//   }
+// });
+
+
+
+
 
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {

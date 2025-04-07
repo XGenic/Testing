@@ -811,6 +811,7 @@ section {
     background-position: center;
 }
 
+
 /* .sec55-bg {
     position: relative;
     top: 0;
@@ -823,6 +824,28 @@ section {
     opacity: 1;
     z-index: 0;
 } */
+
+#typewriter {
+    font-size: 3rem;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1; /* Ensure it sits above the background */
+  }
+
+#typewriter::after {
+    content: "|";
+    margin-left: 5px;
+    font-weight: 100;
+    animation: blink 0.7s infinite;
+  }
+@keyframes blink {
+    50% { opacity: 0; }
+  }
 
 
 
