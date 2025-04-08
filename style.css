@@ -83,15 +83,19 @@ body {
 }
 
 /* Layout Styles */
+/* .pin-spacer{
+    max-height: 200vh;
+} */
+
 .wrapper {
     position: relative;
-    max-height: 200vh;
+    /* max-height: 200vh; */
 }
 
 .container {
     display: flex;
     width: 658vw;
-    max-height: 200vh;
+    /* max-height: 200vh; */
 }
 
 .container .text {
@@ -849,14 +853,19 @@ section {
   /* SECTION 6 */
 #sec6 {
     background-color: bisque;
-    height: 200vh;
+    /* height: 200vh; */
+    height: auto;
     font-family: 'Montserrat', sans-serif;
 }
+
+/* Just fucking figure out the maximum amount of room that these fucking cards can take up and then set that as the fucking height, we'll have some sort of footer to take up space 
+if needed */
 
 /* Grid container */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Keep this */
     gap: 20px;
     padding: 20px;
     max-width: 80vw;
@@ -866,8 +875,12 @@ section {
 /* Card container */
 .reservation-card {
     position: relative;
-    width: 425px;
-    height: 675px;
+    width: 90%;
+    aspect-ratio: 5/8;
+    /* max-width: 425px; */
+    min-width: 300px;
+    /* width: 425px;
+    height: 675px; */
     overflow: hidden;
     border-radius: 40px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);

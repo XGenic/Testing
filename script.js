@@ -1,6 +1,42 @@
 // Register GSAP Plugins
 gsap.registerPlugin(ScrollTrigger, Flip);
 
+// window.addEventListener('load', () => {
+//     setTimeout(matchHeights, 100); // Small delay to ensure others finish
+//   });
+//   window.addEventListener('resize', () => {
+//     requestAnimationFrame(matchHeights); // Smooth resize handling
+//   });
+
+// function matchHeights() {
+//   const section = document.querySelector('.sec6');
+//   const div = document.querySelector('.wrapper');
+//   const container = document.querySelector('.container')
+  
+//   // Reset height first to get natural content height
+//   div.style.height = 'auto';
+  
+//   // Get section's computed height
+//   const sectionHeight = section.offsetHeight;
+  
+//   // Apply to div
+//   div.style.maxHeight = `${sectionHeight}px`;
+//   container.style.height = `${sectionHeight}px`;
+
+//   console.log('Section Height:', sectionHeight);
+//   console.log('Div Height (after set):', div.offsetHeight);
+//   console.log('Container height:', container.offsetHeight)
+//   console.log('Section Element:', section);
+//   console.log('Div Element:', div);
+
+//   setTimeout(() => {
+//     console.log('Final Div Height:', div.offsetHeight);
+//   }, 1000);
+//   setTimeout(() => {
+//     console.log('Final con Height:', container.offsetHeight);
+//   }, 1000);
+// }
+
 // Cursor Animation
 const initCursor = () => {
     // Cursor Leave/Enter Animation
