@@ -865,7 +865,7 @@ if needed */
 .grid-container {
     display: grid;
     /* grid-template-columns: repeat(3, 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Keep this */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Keep this */
     gap: 20px;
     padding: 20px;
     max-width: 80vw;
@@ -877,10 +877,6 @@ if needed */
     position: relative;
     width: 90%;
     aspect-ratio: 5/8;
-    /* max-width: 425px; */
-    min-width: 300px;
-    /* width: 425px;
-    height: 675px; */
     overflow: hidden;
     border-radius: 40px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
@@ -905,56 +901,105 @@ if needed */
 
 /* Content (text and button) */
 .content {
-    position: relative;
+    position: absolute;
+    bottom: 0;        
+    left: 0;          
+    right: 0;         
+    
+    /* Define the area content should occupy - adjust as needed */
+    /* Option 1: Fixed height (e.g., percentage of card) */
+    /* height: 50%; */
+    /* Option 2: Let padding define the space (more flexible) */
+    /* padding: 20px 20px 20px 20px; */
+    padding: clamp(15px, 3vw, 30px);
+
+    display: flex;
+    flex-direction: column; 
+    /* align-items: center; /* Center-align flex items horizontally */
+
     z-index: 10;
-    padding: 20px;
     color: white;
-    text-align: center;
-    bottom: -65%;
+    /* text-align: center; */ /* Less critical now, flex handles alignment */
+    box-sizing: border-box; /* Include padding in width/height */
+    /* Consider adding a min-height if content might get too squished */
+    /* min-height: 150px; */ /* Example */
 }
 
 .content h2 {
-    font-size: 20px;
-    margin-bottom: 5px;
-    margin-top: 10px;
+    /* font-size: 20px;
+    margin-bottom: 5px; */
+
+    font-size: clamp(1.125rem, 1rem + 1vw, 1.75rem); /* 18px to 28px */
+    margin-bottom: clamp(5px, 1vh, 10px); /* Scale margin slightly */
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .content .price {
     background: rgba(249, 108, 181, 0.4);
-    padding: 2px 10px;
-    border-radius: 10px;
+    /* font-size: 14px;
+    padding: 2px 10px; */
+
+    font-size: clamp(0.75rem, 0.65rem + 0.5vw, 1.125rem); /* 12px to 18px */
+    padding: clamp(2px, 0.5vw, 5px) clamp(8px, 1.5vw, 15px); /* Scale padding */
+
+    border-radius: 20px;
     display: inline-block;
-    font-size: 14px;
     color: white;
+    flex-shrink: 0;
 }
 
 .content .description {
-    font-size: 14px;
-    margin: 10px 0;
+    /* font-size: 14px;
+    margin: 10px 0; */
+
+    font-size: clamp(0.8125rem, 0.7rem + 0.5vw, 1.125rem); /* 13px to 18px */
+    margin: clamp(8px, 1.5vh, 15px) 0; /* Scale margin */
+
     color: white;
+    text-align: left;
+    width: 100%;
 }
 
 .content .tags {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    /* gap: 10px;
+    margin-bottom: 20px; */
+
+    gap: clamp(8px, 1.5vw, 15px); /* Scale gap */
+    margin-bottom: clamp(15px, 3vh, 30px); /* Scale margin */
+
+
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .content .tag {
     background: rgba(0, 0, 0, 0.4);
-    padding: 5px 10px;
+    /* padding: 5px 10px;
+    font-size: 12px; */
     border-radius: 10px;
-    font-size: 12px;
+
+    font-size: clamp(0.625rem, 0.5rem + 0.4vw, 0.875rem); /* 10px to 14px */
+    padding: clamp(4px, 0.8vw, 8px) clamp(8px, 1.5vw, 15px); /* Scale padding */
 }
 
 .content .reserve-btn {
+    margin-top: auto;
     width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
     background: white;
     color: black;
-    padding: 10px;
+    /* padding: 10px; */
+    
+    font-size: clamp(0.875rem, 0.75rem + 0.5vw, 1.25rem); /* 14px to 20px */
+    padding: clamp(8px, 1.5vw, 15px); /* Scale padding */
+
     text-align: center;
     border-radius: 90px;
     cursor: pointer;
@@ -973,7 +1018,7 @@ if needed */
     inset: auto 0 0 0;
     height: 50%;
     pointer-events: none;
-    backdrop-filter: blur(300px);
+    backdrop-filter: blur(250px);
     mask-image: linear-gradient(to bottom, 
                 transparent 0%, 
                 rgba(0,0,0,0.96) 20%, 
