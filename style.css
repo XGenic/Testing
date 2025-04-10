@@ -700,9 +700,28 @@ section {
 
 /* SECTION 5 */
 #sec5 {
-    background-color: burlywood;
+    /* background-color: burlywood; */
+    /* background-image: url(assets/pattern_2.svg);
+    background-repeat: repeat;
+    background-size: auto; */
+    background-color: lightblue;
+    /* color: #333; */
     width: 33vw;
     position: relative;
+}
+
+#sec5::before{
+    content: ""; /* Required for pseudo-elements to render */
+    position: absolute; /* Position relative to #pattern-section */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(assets/pattern_5.svg);
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    opacity: 0.1;
+
 }
 
 /* CSS for the vertical banner */
