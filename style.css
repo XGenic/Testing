@@ -787,7 +787,7 @@ section {
   .sec5_text{
     padding-left: 110px;
     padding-right: 20px;
-    padding-top: 12em;
+    padding-top: 15em;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -798,7 +798,8 @@ section {
   #sec5_head{
     text-align: center;
     font-family: 'EB Garamond', serif;
-    font-size: 2.2em;
+    /* font-size: 2.2em; */
+    font-size: clamp(2.2em, 1rem + 1.5vw, 5rem);
     font-weight: 500;
     line-height: 1.2;
   }
@@ -903,40 +904,21 @@ if needed */
     z-index: 1;
 }
 
-/* Content (text and button) */
-.content {
+.card-text-content {
     position: absolute;
+    top: 55%;
     bottom: 0;        
     left: 0;          
     right: 0;         
-    
-    /* Define the area content should occupy - adjust as needed */
-    /* Option 1: Fixed height (e.g., percentage of card) */
-    /* height: 50%; */
-    /* Option 2: Let padding define the space (more flexible) */
-    /* padding: 20px 20px 20px 20px; */
     padding: clamp(10px, 3vw, 20px);
-
-    display: flex;
-    flex-direction: column; 
-    /* align-items: center; /* Center-align flex items horizontally */
-
     z-index: 10;
     color: white;
-    /* text-align: center; */ /* Less critical now, flex handles alignment */
-    box-sizing: border-box; /* Include padding in width/height */
-    /* Consider adding a min-height if content might get too squished */
-    /* min-height: 150px; */ /* Example */
+    box-sizing: border-box;
 }
 
-.content h2 {
-    /* font-size: 20px;
-    margin-bottom: 5px; */
-
-    /* font-size: clamp(1.125rem, 1rem + 1vw, 1.75rem); */
+.card-text-content h2 {
     font-size: clamp(1.6rem, 1rem + 0.5vw, 2rem);
-    margin-bottom: clamp(2px, 1vh, 5px); /* Scale margin slightly */
-
+    margin-bottom: clamp(2px, 1vh, 5px); 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -944,70 +926,37 @@ if needed */
     font-weight: 1000;
 }
 
-.content .price {
+.card-text-content .price {
     background: rgba(249, 108, 181, 0.4);
-    /* font-size: 14px;
-    padding: 2px 10px; */
-
-    /* font-size: clamp(0.75rem, 0.65rem + 0.5vw, 1.125rem);  */
-    font-size: clamp(0.9rem, 0.5rem + 0.5vw, 1.4rem);
-    padding: clamp(2px, 0.5vw, 4px) clamp(8px, 1.5vw, 10px); /* Scale padding */
-
+    font-size: clamp(0.9rem, 0.5rem + 0.5vw, 1.2rem);
+    padding: clamp(2px, 0.5vw, 3px) clamp(6px, 1.5vw, 8px);
+    font-weight: 400;
     border-radius: 20px;
     display: inline-block;
     color: white;
     flex-shrink: 0;
 }
 
-.content .description {
-    /* font-size: 14px;
-    margin: 10px 0; */
-
-    font-size: clamp(0.8125rem, 0.5rem + 0.5vw, 1.125rem); /* 13px to 18px */
-    margin: clamp(4px, 1.5vh, 10px) 0; /* Scale margin */
-
+.card-text-content .description {
+    font-size: clamp(0.8125rem, 0.5rem + 0.5vw, 1.125rem); 
+    margin: clamp(4px, 1.5vh, 10px) 0;
     color: white;
     text-align: left;
     width: 100%;
-}
-
-.content .tags {
-    display: flex;
-    /* gap: 10px;
-    margin-bottom: 20px; */
-
-    gap: clamp(8px, 1.5vw, 15px); /* Scale gap */
-    margin-bottom: clamp(15px, 3vh, 30px); /* Scale margin */
+} 
 
 
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.content .tag {
-    background: rgba(0, 0, 0, 0.4);
-    /* padding: 5px 10px;
-    font-size: 12px; */
-    border-radius: 10px;
-
-    font-size: clamp(0.625rem, 0.5rem + 0.4vw, 0.875rem); /* 10px to 14px */
-    padding: clamp(4px, 0.8vw, 8px) clamp(8px, 1.5vw, 15px); /* Scale padding */
-}
-
-.content .reserve-btn {
-    /* margin-top: auto; */
-    margin-top: 20px;
+.reserve-btn {
+    position: absolute;
+    bottom: clamp(15px, 3vh, 25px);
     width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    align-self: center;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
     background: white;
     color: black;
-    /* padding: 10px; */
-    
     font-size: clamp(0.875rem, 0.75rem + 0.5vw, 1.25rem); /* 14px to 20px */
     padding: clamp(8px, 1.5vw, 15px); /* Scale padding */
-
     text-align: center;
     border-radius: 90px;
     cursor: pointer;
@@ -1015,7 +964,7 @@ if needed */
     transition: 0.3s;
 }
 
-.content .reserve-btn:hover {
+.reserve-btn:hover {
     background: pink;
 }
 
@@ -1034,6 +983,9 @@ if needed */
     z-index: 5;
     inset: auto 0 0 0;
     height: 50%;
+    bottom: 0;
+    left: 0;
+    right: 0;
     pointer-events: none;
     backdrop-filter: blur(250px);
     mask-image: linear-gradient(to bottom, 
