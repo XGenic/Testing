@@ -562,14 +562,14 @@ section {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(230, 142, 71, 0.8);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .flip-arrow:hover, .flip-back-arrow:hover {
-    background-color: rgba(8, 106, 191, 0.1);
+    background-color: rgba(233, 190, 50, 0.1);
     transform: translateY(-50%) scale(1.1);
 }
 
@@ -700,7 +700,7 @@ section {
 
 /* SECTION 5 */
 #sec5 {
-    background-color: rgb(87, 200, 162);
+    background-color: burlywood;
     width: 33vw;
     position: relative;
 }
@@ -792,6 +792,7 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    opacity: 0;
   }
 
   #sec5_head{
@@ -804,7 +805,10 @@ section {
 
   #sec5_sub{
     /* font-family: 'EB Garamond', serif; */
-    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.8em, 0.5rem + 0.4vw, 1.5rem);
+    width: 70%;
+    align-self: center;
   }
   
 
@@ -911,7 +915,7 @@ if needed */
     /* height: 50%; */
     /* Option 2: Let padding define the space (more flexible) */
     /* padding: 20px 20px 20px 20px; */
-    padding: clamp(15px, 3vw, 30px);
+    padding: clamp(10px, 3vw, 20px);
 
     display: flex;
     flex-direction: column; 
@@ -929,13 +933,15 @@ if needed */
     /* font-size: 20px;
     margin-bottom: 5px; */
 
-    font-size: clamp(1.125rem, 1rem + 1vw, 1.75rem); /* 18px to 28px */
-    margin-bottom: clamp(5px, 1vh, 10px); /* Scale margin slightly */
+    /* font-size: clamp(1.125rem, 1rem + 1vw, 1.75rem); */
+    font-size: clamp(1.6rem, 1rem + 0.5vw, 2rem);
+    margin-bottom: clamp(2px, 1vh, 5px); /* Scale margin slightly */
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    font-weight: 1000;
 }
 
 .content .price {
@@ -943,8 +949,9 @@ if needed */
     /* font-size: 14px;
     padding: 2px 10px; */
 
-    font-size: clamp(0.75rem, 0.65rem + 0.5vw, 1.125rem); /* 12px to 18px */
-    padding: clamp(2px, 0.5vw, 5px) clamp(8px, 1.5vw, 15px); /* Scale padding */
+    /* font-size: clamp(0.75rem, 0.65rem + 0.5vw, 1.125rem);  */
+    font-size: clamp(0.9rem, 0.5rem + 0.5vw, 1.4rem);
+    padding: clamp(2px, 0.5vw, 4px) clamp(8px, 1.5vw, 10px); /* Scale padding */
 
     border-radius: 20px;
     display: inline-block;
@@ -956,8 +963,8 @@ if needed */
     /* font-size: 14px;
     margin: 10px 0; */
 
-    font-size: clamp(0.8125rem, 0.7rem + 0.5vw, 1.125rem); /* 13px to 18px */
-    margin: clamp(8px, 1.5vh, 15px) 0; /* Scale margin */
+    font-size: clamp(0.8125rem, 0.5rem + 0.5vw, 1.125rem); /* 13px to 18px */
+    margin: clamp(4px, 1.5vh, 10px) 0; /* Scale margin */
 
     color: white;
     text-align: left;
@@ -988,7 +995,8 @@ if needed */
 }
 
 .content .reserve-btn {
-    margin-top: auto;
+    /* margin-top: auto; */
+    margin-top: 20px;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -1009,6 +1017,15 @@ if needed */
 
 .content .reserve-btn:hover {
     background: pink;
+}
+
+.reserve-btn a{
+    text-decoration: none;
+    color: black;
+}
+
+.reserve-btn a:visited{
+    text-decoration: none;
 }
 
 /* Gradient blur effect */

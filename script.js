@@ -228,21 +228,21 @@ const initImageExpansion = () => {
 };
 
 // Scroll Snapping
-const initScrollSnapping = () => {
-    const sections = gsap.utils.toArray("section");
-    const lastSection = sections[sections.length - 1];
-    let snapProgress = 0;
-    let lastScrollTime = 0;
-    const SCROLL_COOLDOWN = 500;
+// const initScrollSnapping = () => {
+//     const sections = gsap.utils.toArray("section");
+//     const lastSection = sections[sections.length - 1];
+//     let snapProgress = 0;
+//     let lastScrollTime = 0;
+//     const SCROLL_COOLDOWN = 500;
 
-    // Only apply scroll snapping to the last section (vertical scroll)
-    ScrollTrigger.create({
-        trigger: lastSection,
-        start: "top top",
-        end: "bottom bottom",
-        snap: 1
-    });
-};
+//     // Only apply scroll snapping to the last section (vertical scroll)
+//     ScrollTrigger.create({
+//         trigger: lastSection,
+//         start: "top top",
+//         end: "bottom bottom",
+//         snap: 1
+//     });
+// };
 
 // Horizontal Scroll
 const initHorizontalScroll = () => {
@@ -433,6 +433,20 @@ const initHorizontalScroll = () => {
                 end: "right left"
             }
         });
+
+        gsap.to(".sec5_text",{
+            opacity: '1',
+            ease: 'none',
+            scrollTrigger:{
+                trigger: ".sec5",
+                containerAnimation: horizontalScroll,
+                scrub: true,
+                start: "left right",
+                end: "+=1000",
+                // markers: true
+            }
+            
+        })
 
         
         // Update snap points on resize
@@ -706,5 +720,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     initImageExpansion();
     initHorizontalScroll();
-    initScrollSnapping();
+    // initScrollSnapping();
 });
