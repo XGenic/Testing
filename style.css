@@ -89,13 +89,13 @@ body {
 
 .wrapper {
     position: relative;
-    /* max-height: 200vh; */
+    max-height: 1500px;
 }
 
 .container {
     display: flex;
     width: 658vw;
-    /* max-height: 200vh; */
+    max-height: 1500px;
 }
 
 .container .text {
@@ -543,11 +543,14 @@ section {
 .info-content ul {
     margin: 15px 0;
     padding-left: 20px;
+    font-size: clamp(0.9em, 0.9vw, 1.1em);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .info-content p {
     margin: 10px 0;
     font-size: clamp(0.9em, 0.9vw, 1.1em);
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Arrow styling */
@@ -704,7 +707,7 @@ section {
     /* background-image: url(assets/pattern_2.svg);
     background-repeat: repeat;
     background-size: auto; */
-    background-color: lightblue;
+    background-color: white;
     /* color: #333; */
     width: 33vw;
     position: relative;
@@ -719,8 +722,8 @@ section {
     bottom: 0;
     background-image: url(assets/pattern_5.svg);
     background-repeat: repeat;
-    background-size: 300px 300px;
-    opacity: 0.1;
+    background-size: 400px 400px;
+    opacity: 0.15;
 
 }
 
@@ -878,7 +881,7 @@ section {
 #sec6 {
     background-color: bisque;
     /* height: 200vh; */
-    height: auto;
+    height: 1500px;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -947,9 +950,11 @@ if needed */
 
 .card-text-content .price {
     background: rgba(249, 108, 181, 0.4);
-    font-size: clamp(0.9rem, 0.5rem + 0.5vw, 1.2rem);
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0;
+    font-size: clamp(0.8rem, 0.5rem + 0.5vw, 1.1rem);
     padding: clamp(2px, 0.5vw, 3px) clamp(6px, 1.5vw, 8px);
-    font-weight: 400;
+    font-weight: 800;
     border-radius: 20px;
     display: inline-block;
     color: white;
@@ -968,14 +973,14 @@ if needed */
 .reserve-btn {
     position: absolute;
     bottom: clamp(15px, 3vh, 25px);
-    width: 90%;
+    width: 80%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     background: white;
     color: black;
     font-size: clamp(0.875rem, 0.75rem + 0.5vw, 1.25rem); /* 14px to 20px */
-    padding: clamp(8px, 1.5vw, 15px); /* Scale padding */
+    padding: clamp(8px, 1.5vw, 14px); /* Scale padding */
     text-align: center;
     border-radius: 90px;
     cursor: pointer;
