@@ -89,13 +89,13 @@ body {
 
 .wrapper {
     position: relative;
-    max-height: 1500px;
+    max-height: 180vh;
 }
 
 .container {
     display: flex;
     width: 658vw;
-    max-height: 1500px;
+    max-height: 180vh;
 }
 
 .container .text {
@@ -881,7 +881,7 @@ section {
 #sec6 {
     background-color: bisque;
     /* height: 200vh; */
-    height: 1500px;
+    height: 180vh;
     font-family: 'Montserrat', sans-serif;
 }
 
