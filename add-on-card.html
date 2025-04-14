@@ -61,6 +61,7 @@
     position: absolute;
     z-index: 10; 
     padding: 15px; 
+    padding-bottom: 10px;
     color: white;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
     bottom: 5%; 
@@ -120,20 +121,14 @@
     bottom: 0; /* Stick to bottom of image container */
     left: 0; /* Full width */
     right: 0; /* Full width */
-    height: 50%; /* Start blur higher up - Adjust as needed */
+    height: 30%; /* Start blur higher up - Adjust as needed */
     pointer-events: none; /* Ignore mouse events */
     backdrop-filter: blur(15px); /* Apply blur - Adjust value as needed */
-    -webkit-backdrop-filter: blur(15px); /* Safari support */
     mask-image: linear-gradient(to bottom,
                 transparent 0%,
-                rgba(0,0,0,0.80) 20%, /* Adjusted gradient for smoother start */
-                rgba(0,0,0,0.95) 50%,
+                rgba(0,0,0,0.95) 20%, /* Adjusted gradient for smoother start */
+                rgba(0,0,0,0.97) 50%,
                 rgba(0,0,0,1) 100%);
-    -webkit-mask-image: linear-gradient(to bottom,
-                transparent 0%,
-                rgba(0,0,0,0.80) 20%,
-                rgba(0,0,0,0.95) 50%,
-                rgba(0,0,0,1) 100%); /* Safari support */
 }
 
     </style>
@@ -146,7 +141,7 @@
             </div>
             <div class='addon-content'>
                 <h2>
-                    Swiss Alps Retreat
+                    Stew
                     <a href="#" class="learn-more-link"> <button class='learn-more-btn'>Learn More</button>
                     </a>
                 </h2>
