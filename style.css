@@ -885,19 +885,66 @@ section {
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Just fucking figure out the maximum amount of room that these fucking cards can take up and then set that as the fucking height, we'll have some sort of footer to take up space 
-if needed */
+/* Styling for the Tab Navigation */
+.tab-nav {
+    display: flex;
+    justify-content: center; /* Center the tabs */
+    margin-bottom: 30px; /* Space below the tabs */
+    border-bottom: 2px solid #eee; /* Optional separator line */
+}
+
+.tab-button {
+    padding: 10px 25px; /* Adjust padding */
+    cursor: pointer;
+    border: none;
+    background-color: transparent; /* Default background */
+    font-size: 1.1rem; /* Adjust font size */
+    font-weight: 600;
+    color: #555; /* Default text color */
+    margin: 0 5px; /* Space between tabs */
+    border-bottom: 3px solid transparent; /* Placeholder for active border */
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+    position: relative;
+    top: 2px; /* Align bottom border with container border */
+}
+
+.tab-button:hover {
+    color: #007bff; /* Color on hover */
+}
+
+.tab-button.active {
+    color: #0056b3; /* Active tab color */
+    border-bottom-color: #0056b3; /* Active tab underline */
+    font-weight: 700;
+}
+
+/* Styling for Tab Panels */
+.tab-panel {
+    display: none; /* Hide inactive panels by default */
+    opacity: 0; /* Start invisible */
+    transform: translateY(15px); /* Start slightly lower */
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Animate opacity and transform */
+}
+
+.tab-panel.active {
+    display: block; /* Show the active panel */
+    opacity: 1; /* Fade it in */
+    transform: translateY(0); /* Move it up to its natural position */
+}
+
+
 
 /* Grid container */
-.grid-container {
+.tab-panel .grid-container {
     display: grid;
-    /* grid-template-columns: repeat(3, 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Keep this */
     gap: 20px;
     padding: 20px;
     max-width: 80vw;
     margin: 60px auto 0; /* 60px top margin for title */
 }
+
+.boat-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));}
+.addon-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));}
 
 /* Card container */
 .reservation-card {
@@ -1022,7 +1069,113 @@ if needed */
 }
 
 
+/* Add-on Card container */
+.addon-card {
+    max-width: 360px;
+    position: relative;
+    background-color: white;
+    /* width: 90%; */ /* Let the grid handle width */
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 30px; /* Slightly less round */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Adjusted shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+}
 
+.addon-card:hover {
+    transform: translateY(-8px); /* Slightly less movement */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Adjusted hover shadow */
+}
+
+/* Background image container */
+.addon-image {
+    position: absolute;
+    width: 96%;
+    height: 96%;
+    top: 2%; 
+    left: 2%; 
+    background: no-repeat center/cover;
+    border-radius: 25px; 
+    z-index: 1;
+    overflow: hidden; 
+    position: relative; 
+}
+
+/* Content (text and button) */
+.addon-content {
+    position: absolute;
+    z-index: 10; 
+    padding: 15px; 
+    padding-bottom: 10px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
+    bottom: 5%; 
+    left: 0; 
+    width: 100%;
+    text-align: center; 
+}
+
+.addon-content h2 {
+    font-size: clamp(1rem, 0.8rem + 0.8vw, 1.4rem); 
+    margin-bottom: 10px; 
+    margin-top: 0; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 5px; 
+    line-height: 1.2; 
+}
+
+/* Link styling */
+.learn-more-link {
+    text-decoration: none; 
+    flex-shrink: 0; 
+    margin-left: 10px; 
+}
+
+/* Button Styling */
+.learn-more-btn {
+    background: rgba(249, 108, 181, 0.5); 
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0;
+    font-size: clamp(0.7rem, 0.5rem + 0.5vw, 0.9rem); 
+    padding: clamp(3px, 0.6vw, 5px) clamp(8px, 1.8vw, 12px);
+    font-weight: 700; 
+    border-radius: 20px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    transition: background-color 0.3s ease; 
+
+    /* Button Resets */
+    border: none;
+    cursor: pointer;
+    outline: none; 
+}
+
+
+.learn-more-btn:hover { /* Target button directly for hover */
+    background: rgba(249, 108, 181, 0.8); /* Darken on hover */
+}
+
+/* Gradient blur effect - Now inside .addon-image */
+.blur {
+    position: absolute;
+    z-index: 5; /* Above image background, below text */
+    bottom: 0; /* Stick to bottom of image container */
+    left: 0; /* Full width */
+    right: 0; /* Full width */
+    height: 30%; /* Start blur higher up - Adjust as needed */
+    pointer-events: none; /* Ignore mouse events */
+    backdrop-filter: blur(15px); /* Apply blur - Adjust value as needed */
+    mask-image: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(0,0,0,0.95) 20%, /* Adjusted gradient for smoother start */
+                rgba(0,0,0,0.97) 50%,
+                rgba(0,0,0,1) 100%);
+}
 
 
 

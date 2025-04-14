@@ -1,41 +1,29 @@
 // Register GSAP Plugins
 gsap.registerPlugin(ScrollTrigger, Flip);
 
-// window.addEventListener('load', () => {
-//     setTimeout(matchHeights, 100); // Small delay to ensure others finish
-//   });
-//   window.addEventListener('resize', () => {
-//     requestAnimationFrame(matchHeights); // Smooth resize handling
-//   });
+//Tab Switch
+document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanels = document.querySelectorAll('.tab-panel');
 
-// function matchHeights() {
-//   const section = document.querySelector('.sec6');
-//   const div = document.querySelector('.wrapper');
-//   const container = document.querySelector('.container')
-  
-//   // Reset height first to get natural content height
-//   div.style.height = 'auto';
-  
-//   // Get section's computed height
-//   const sectionHeight = section.offsetHeight;
-  
-//   // Apply to div
-//   div.style.maxHeight = `${sectionHeight}px`;
-//   container.style.height = `${sectionHeight}px`;
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetPanelId = button.getAttribute('data-tab-target'); // e.g., "#boats-panel"
+            const targetPanel = document.querySelector(targetPanelId);
 
-//   console.log('Section Height:', sectionHeight);
-//   console.log('Div Height (after set):', div.offsetHeight);
-//   console.log('Container height:', container.offsetHeight)
-//   console.log('Section Element:', section);
-//   console.log('Div Element:', div);
+            // If target panel doesn't exist, do nothing
+            if (!targetPanel) return;
 
-//   setTimeout(() => {
-//     console.log('Final Div Height:', div.offsetHeight);
-//   }, 1000);
-//   setTimeout(() => {
-//     console.log('Final con Height:', container.offsetHeight);
-//   }, 1000);
-// }
+            // Deactivate all buttons and panels
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabPanels.forEach(panel => panel.classList.remove('active'));
+
+            // Activate the clicked button and its corresponding panel
+            button.classList.add('active');
+            targetPanel.classList.add('active');
+        });
+    });
+});
 
 // Cursor Animation
 const initCursor = () => {
