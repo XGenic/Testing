@@ -995,7 +995,7 @@ section {
 }
 
 .card-text-content .price {
-    background: rgba(249, 108, 181, 0.4);
+    background: rgba(2, 2, 2, 0.4);
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 0;
     font-size: clamp(0.8rem, 0.5rem + 0.5vw, 1.1rem);
@@ -1104,27 +1104,24 @@ section {
 /* Content (text and button) */
 .addon-content {
     position: absolute;
-    z-index: 10; 
-    padding: 15px; 
-    padding-bottom: 10px;
-    padding-left: 10px;
+    z-index: 10;
     color: white;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
-    bottom: 5%; 
-    left: 0; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    bottom: 3%;
+    left: 50%; /* Change from left: 0 to left: 50% */
+    transform: translateX(-50%); /* Add this to center the element */
     width: 90%;
-    text-align: center; 
+    text-align: center;
 }
 
 .addon-content h2 {
-    font-size: clamp(1rem, 0.8rem + 0.8vw, 1.3rem); 
+    font-size: clamp(1rem, 0.8rem + 0.8vw, 1.2rem); 
     /* margin-bottom: 10px;  */
     margin-top: 0; 
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0 5px; 
     line-height: 1.2; 
 }
 
@@ -1141,7 +1138,7 @@ section {
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 0;
     font-size: clamp(0.7rem, 0.5rem + 0.5vw, 0.9rem); 
-    padding: clamp(3px, 0.6vw, 5px) clamp(8px, 1.8vw, 12px);
+    padding: clamp(1px, 0.6vw, 3px) clamp(8px, 1.8vw, 12px);
     font-weight: 700; 
     border-radius: 20px;
     display: inline-block;
@@ -1168,7 +1165,7 @@ section {
     bottom: 0; /* Stick to bottom of image container */
     left: 0; /* Full width */
     right: 0; /* Full width */
-    height: 30%; /* Start blur higher up - Adjust as needed */
+    height: 25%; /* Start blur higher up - Adjust as needed */
     pointer-events: none; /* Ignore mouse events */
     backdrop-filter: blur(15px); /* Apply blur - Adjust value as needed */
     mask-image: linear-gradient(to bottom,
