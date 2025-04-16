@@ -1,6 +1,17 @@
 // Register GSAP Plugins
 gsap.registerPlugin(ScrollTrigger, Flip);
 
+//LOADING SCREEN//
+gsap.to("#loadingScreen", {
+    duration: 3, // Set the duration of the animation
+    y: "-100%", // Move the loading screen up to hide it
+    ease: "expo.in", // Use ease for smooth animation
+    onComplete: () => {
+      // After animation is complete, show the main content
+      document.getElementById("mainContent").style.display = "block";
+    }
+  });
+
 //Tab Switch
 document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-button');
