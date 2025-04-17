@@ -330,7 +330,7 @@ const initHorizontalScroll = () => {
             scrollTrigger: {
                 trigger: '#sec4',
                 containerAnimation: horizontalScroll,
-                start: "10% left",
+                start: "5% left",
                 end: "right right",
                 scrub: true,
                 // markers: true,
@@ -351,8 +351,8 @@ const initHorizontalScroll = () => {
         scrollTrigger: {
             trigger: "#sec4",
             containerAnimation: horizontalScroll,
-            start: "10% left",
-            end: "20% left",
+            start: "5% left",
+            end: "15% left",
             scrub: true,
             //markers: true
             }
@@ -445,6 +445,20 @@ const initHorizontalScroll = () => {
                 // markers: true
             }
             
+        })
+
+        //Book Now Slide
+        gsap.to('.book-now-button',{
+            bottom: '20px',
+            ease: 'none',
+            scrollTrigger:{
+                trigger: ".sec2",
+                containerAnimation: horizontalScroll,
+                scrub: true,
+                start: "left right",
+                end: "+=1300",
+                // markers: true
+            }
         })
 
         

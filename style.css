@@ -230,6 +230,7 @@ section {
     text-align: center;
     font-weight: 700;
     font-size: 0.8em;
+    letter-spacing: 0.1em;
     margin-top: 1rem;
     color: white;
     width: 60%;
@@ -241,6 +242,7 @@ section {
     font-size: 3.5em;
     margin-top: 0;
     margin-bottom: 1rem;
+    letter-spacing: 0.06em;
     font-weight: 400;
     line-height: 0.9;
     color: white;
@@ -249,9 +251,14 @@ section {
 
 .contact {
     position: absolute;
-    bottom: 15%;
-    left: 2%;
+    /* bottom: 15%; */
+    /* right: 20%; */
+    margin-left: 45%;
     color: white;
+}
+
+#sec1 #contact-text {
+    width: 60%;
 }
 
 /* Book Now Button Styles */
@@ -1255,22 +1262,28 @@ section {
 
 /* BOOK NOW BUTTON */
 .book-now-button {
+  font-family: 'Montserrat', sans-serif;
   position: fixed;
-  bottom: 20px;
+  /* bottom: 20px; */
+  bottom: -100px;
   right: 20px;
   width: 80px;
   height: 80px;
-  border-radius: 50%;
+  border-radius: 40%;
   background-color: #f59d9d;
   color: white;
   text-align: center;
-  line-height: 80px;
-  font-size: 1.3em;
+  /* line-height: 1em; */
+  font-size: 1.1em;
+  font-weight: bold;
   text-decoration: none;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   z-index: 1000;
   box-shadow: 4px 2px 5px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .book-now-button:hover {
