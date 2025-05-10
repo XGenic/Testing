@@ -1024,7 +1024,7 @@ section {
     margin: 60px auto 0; /* 60px top margin for title */
 }
 
-.boat-grid { grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));}
+.boat-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));}
 .addon-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));}
 
 /* Card container */
@@ -1090,7 +1090,7 @@ section {
 }
 
 .card-text-content .description {
-    font-size: clamp(0.5rem, 0.4rem + 0.5vw, 1rem); 
+    font-size: clamp(0.5rem, 0.4rem + 0.5vw, 1.1rem); 
     /* font-size: clamp(0.8125rem, 0.5rem + 0.5vw, 1.125rem);  */
     margin: clamp(4px, 1.5vh, 10px) 0;
     color: white;
