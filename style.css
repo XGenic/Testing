@@ -1025,7 +1025,7 @@ section {
 }
 
 .boat-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));}
-.addon-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));}
+.addon-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));}
 
 /* Card container */
 .reservation-card {
