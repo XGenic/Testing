@@ -13,16 +13,21 @@ gsap.to("#loadingScreen", {
   });
 
 //Tab Switch
-document.addEventListener('DOMContentLoaded', () => {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabPanels = document.querySelectorAll('.tab-panel');
+function initTabSwitching() {
+    const tabButtons = document.querySelectorAll('#sec6 .tab-button'); // Scope to sec6
+    const tabPanels = document.querySelectorAll('#sec6 .tab-panel');   // Scope to sec6
+    const section6 = document.getElementById('sec6');
+
+    if (!section6 || tabButtons.length === 0 || tabPanels.length === 0) {
+        console.warn("Tab elements for section 6 not found.");
+        return;
+    }
 
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const targetPanelId = button.getAttribute('data-tab-target'); // e.g., "#boats-panel"
+            const targetPanelId = button.getAttribute('data-tab-target');
             const targetPanel = document.querySelector(targetPanelId);
 
-            // If target panel doesn't exist, do nothing
             if (!targetPanel) return;
 
             // Deactivate all buttons and panels
@@ -32,9 +37,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // Activate the clicked button and its corresponding panel
             button.classList.add('active');
             targetPanel.classList.add('active');
+
+            // Crucial step: Refresh ScrollTrigger after the DOM has updated
+            // and section 6 has potentially changed height.
+            // Using a minimal timeout to ensure the browser has reflowed.
+            requestAnimationFrame(() => {
+                ScrollTrigger.refresh();
+                console.log(`ScrollTrigger refreshed due to tab switch. New sec6 offsetHeight: ${section6.offsetHeight}`);
+            });
         });
     });
-});
+}
+
+
 
 // Cursor Animation
 const initCursor = () => {
@@ -286,6 +301,8 @@ function initHorizontalAndDynamicScroll() {
         const verticalScrollForHorizontalPart = horizontalTrackScrollWidth > window.innerWidth ?
                                               (horizontalTrackScrollWidth - window.innerWidth) : 0;
 
+        const scrollBuffer = window.innerHeight * 0.7
+
         const horizontalTween = gsap.to(container, {
             x: targetXTranslation,
             ease: "none"
@@ -296,7 +313,7 @@ function initHorizontalAndDynamicScroll() {
             pin: true,
             scrub: 0.7,
             start: "top top",
-            end: () => `+=${verticalScrollForHorizontalPart}`,
+            end: () => `+=${verticalScrollForHorizontalPart + scrollBuffer}`,
             animation: horizontalTween,
             invalidateOnRefresh: true,
             // markers: true, // For debugging
@@ -321,10 +338,8 @@ function initHorizontalAndDynamicScroll() {
             }
         });
 
-        // --- Re-integrate your original animations tied to horizontal scroll ---
-        // Make sure to use 'horizontalTween' as the containerAnimation
 
-        // Example: Your original #sec4 video animation
+        // #sec4 video animation
         if (document.getElementById('sec4')) {
             gsap.timeline({
                 scrollTrigger: {
@@ -362,7 +377,7 @@ function initHorizontalAndDynamicScroll() {
             .to(".video-section-bottom",{ y: "50%", rotationX: "-60_ccw", opacity: 0, ease: "none" },0); // From your original
         }
 
-        // Example: Your original #sec2_sub text fill
+        // #sec2_sub text fill
         if (document.getElementById('sec2_sub')) {
             gsap.to("#sec2_sub", {
                 color: "orange", // Or your original target
@@ -376,7 +391,7 @@ function initHorizontalAndDynamicScroll() {
             });
         }
 
-        // Example: Your original #bg-parallax for sec1
+        // #bg-parallax for sec1
         if (document.getElementById('bg-parallax')) {
             gsap.to("#bg-parallax", {
                 x: "10%", // From your original
@@ -390,7 +405,7 @@ function initHorizontalAndDynamicScroll() {
                 }
             });
         }
-         // Example: Your original .content-wrapper for sec1
+         // .content-wrapper for sec1
         if (document.querySelector('.sec1 .content-wrapper')) {
             gsap.to(".sec1 .content-wrapper", { // Assuming .content-wrapper is inside .sec1
                 x: "-50%", // From your original
@@ -406,7 +421,7 @@ function initHorizontalAndDynamicScroll() {
         }
 
 
-        // Example: Your original .sec5_text opacity
+        // .sec5_text opacity
         if (document.querySelector('.sec5_text')) {
             gsap.to(".sec5_text",{
                 opacity: '1',
@@ -421,6 +436,7 @@ function initHorizontalAndDynamicScroll() {
             });
         }
 
+        // book now button popup
         if (document.getElementById('book-now-button') && document.getElementById('sec2')) {
             gsap.to('.book-now-button',{
                 bottom: '20px', // Or your desired final position
@@ -435,7 +451,6 @@ function initHorizontalAndDynamicScroll() {
             });
         }
 
-        // --- End of re-integrated animations ---
 
         window.addEventListener('load', () => {
             console.log("Window loaded, refreshing ScrollTrigger for accurate final heights.");
@@ -464,9 +479,6 @@ function initHorizontalAndDynamicScroll() {
         };
     }); // End of mm.add("(min-width: 991px)")
 }
-
-
-
 
 
 
@@ -730,7 +742,6 @@ startTypewriter();
 document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     initImageExpansion();
-    initHorizontalAndDynamicScroll(); // ADD this line
-    // initBookNowButtonScroll(); // Add if you use the example's separate button logic
-    // Ensure other initializations like tab switch, typewriter are still called if needed
+    initHorizontalAndDynamicScroll();
+    initTabSwitching();
 });
