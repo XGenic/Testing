@@ -243,231 +243,232 @@ const initImageExpansion = () => {
 //     });
 // };
 
-// Horizontal Scroll
-const initHorizontalScroll = () => {
-    // Only initialize on desktop
-    const horizontalM = gsap.matchMedia();
-   
-    horizontalM.add("(min-width: 991px)", () => {
-        const sections = gsap.utils.toArray("section");
-        const lastSectionIndex = sections.length - 1;
-        
-        // Add the wrapper class for horizontal scrolling
-        document.querySelector('.wrapper').classList.add('section-height');
-        document.querySelector('.container').classList.add('track');
 
-        // Set section heights based on content width
-        const setTrackHeights = () => {
-            document.querySelectorAll('.section-height').forEach(section => {
-                const trackWidth = section.querySelector('.track')?.offsetWidth || 0;
-                section.style.height = `${trackWidth}px`;
-            });
-        };
 
-        setTrackHeights();
-        window.addEventListener("resize", setTrackHeights);
+function initHorizontalAndDynamicScroll() {
+    const mm = gsap.matchMedia();
 
-        // Calculate snap points for each section
-        const getSnapPoints = () => {
-            const points = [];
-            const container = document.querySelector(".container");
-            const containerWidth = container.scrollWidth - window.innerWidth;
-            
-            sections.forEach((section) => {
-                const sectionLeft = section.offsetLeft;
-                const normalizedPosition = sectionLeft / containerWidth;
-                points.push(normalizedPosition);
-            });
-            
-            return points;
-        };
+    mm.add("(min-width: 991px)", () => { // Use your original breakpoint or adjust
+        const wrapper = document.querySelector(".wrapper");
+        const container = document.querySelector(".container");
+        // Ensure you select direct children sections of .container
+        const allSections = gsap.utils.toArray(".container > section");
+        const sec6 = document.getElementById("sec6");
 
-        // Main horizontal scroll animation
-        const horizontalScroll = gsap.to(".container", {
-            x: () => -(document.querySelector(".container").scrollWidth - window.innerWidth),
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".wrapper",
-                pin: true,
-                scrub: 0.7,
-                //ENABLE BACK TO SNAP SECTIONS
-                // snap: {
-                //     snapTo: getSnapPoints(),
-                //     duration: 1,
-                //     ease: "power4.out",
-                //     delay: 0,
-                //     inertia: true
-                // },
-                end: () => `+=${document.querySelector(".container").scrollWidth - window.innerWidth}`,
-                invalidateOnRefresh: true,
-                onUpdate: (self) => {
-                    if (self.progress >= 1) {
-                        document.querySelector('.container').style.position = 'relative';
-                    } else {
-                        document.querySelector('.container').style.position = 'fixed';
-                    }
-                }
+        if (!wrapper || !container || !sec6 || allSections.length === 0) {
+            console.error("Essential scroll elements not found. Aborting horizontal scroll setup.");
+            return;
+        }
+
+        const horizontalSections = allSections.slice(0, allSections.indexOf(sec6));
+        if (horizontalSections.length === 0) {
+             console.log("No horizontal sections found before sec6. Page will scroll vertically.");
+             ScrollTrigger.refresh();
+             return;
+        }
+
+        let horizontalTrackScrollWidth = 0;
+        horizontalSections.forEach(s => {
+            horizontalTrackScrollWidth += s.offsetWidth;
+        });
+
+        let totalContainerWidth = 0;
+        allSections.forEach(s => {
+            totalContainerWidth += s.offsetWidth;
+        });
+        container.style.width = totalContainerWidth + 'px';
+
+        if (horizontalTrackScrollWidth === 0 && horizontalSections.length > 0) { // Added check for > 0
+            console.warn("Horizontal sections have a combined width of 0. Horizontal scroll might not work as expected.");
+        }
+
+        const targetXTranslation = -horizontalTrackScrollWidth;
+        const verticalScrollForHorizontalPart = horizontalTrackScrollWidth > window.innerWidth ?
+                                              (horizontalTrackScrollWidth - window.innerWidth) : 0;
+
+        const horizontalTween = gsap.to(container, {
+            x: targetXTranslation,
+            ease: "none"
+        });
+
+        const mainST = ScrollTrigger.create({ // Gave it a variable name: mainST
+            trigger: wrapper,
+            pin: true,
+            scrub: 0.7,
+            start: "top top",
+            end: () => `+=${verticalScrollForHorizontalPart}`,
+            animation: horizontalTween,
+            invalidateOnRefresh: true,
+            // markers: true, // For debugging
+            onUpdate: self => {
+                const horizontalProgress = gsap.utils.clamp(0, 1, self.progress);
+                // Progress Bar Update (see point 4 below)
+                gsap.to(".progress-bar", {
+                    width: `${horizontalProgress * 100}%`,
+                    ease: "none"
+                });
+                gsap.to(".yacht-icon img", {
+                    rotation: Math.sin(horizontalProgress * Math.PI * 10) * 8,
+                    duration: 0.1,
+                });
+            },
+            onLeave: () => {
+                console.log("Horizontal pin ended.");
+                gsap.to(".progress-bar", { width: "100%", ease: "none" });
+            },
+            onEnterBack: () => {
+                 console.log("Re-entering horizontal pin area.");
             }
         });
-        
-        //SECTION 4 ANIMATION
-        gsap.timeline({
+
+        // --- Re-integrate your original animations tied to horizontal scroll ---
+        // Make sure to use 'horizontalTween' as the containerAnimation
+
+        // Example: Your original #sec4 video animation
+        if (document.getElementById('sec4')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#sec4",
+                    containerAnimation: horizontalTween, // IMPORTANT CHANGE
+                    start: 'left left', // Adjust as per your original logic
+                    end: 'right right', // Adjust as per your original logic
+                    scrub: true,
+                }
+            })
+            .to(".video-section-component",{ xPercent: 100, ease: "none" }); // From your original
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#sec4',
+                    containerAnimation: horizontalTween, // IMPORTANT CHANGE
+                    start: "5% left", // From your original
+                    end: "right right", // From your original
+                    scrub: true,
+                }
+            })
+            .to (".video-container", { width: "100%", height: "100%", marginTop: 0 }) // From your original
+            .to("#background-video", { width: "100%", height: "100%", marginTop: 0 }); // From your original
+
+            gsap.timeline({
             scrollTrigger: {
                 trigger: "#sec4",
-                containerAnimation: horizontalScroll,
-                start: 'left left',
-                end: 'right right',
+                containerAnimation: horizontalTween, // IMPORTANT CHANGE
+                start: "5% left", // From your original
+                end: "15% left", // From your original
                 scrub: true,
-                //markers: true
-            }
-        })
-        .to(".video-section-component",{
-            xPercent: 100,
-            ease: "none"
-        });
+                }
+            })
+            .to(".video-heading", { y: "-50%", rotationX: "60_cw", opacity: 0, ease: "none" },0) // From your original
+            .to(".video-section-bottom",{ y: "50%", rotationX: "-60_ccw", opacity: 0, ease: "none" },0); // From your original
+        }
 
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '#sec4',
-                containerAnimation: horizontalScroll,
-                start: "5% left",
-                end: "right right",
-                scrub: true,
-                // markers: true,
-            }
-        })
-        .to (".video-container", {
-            width: "100%",
-            height: "100%",
-            marginTop: 0
-        })
-        .to("#background-video", {
-            width: "100%",
-            height: "100%",
-            marginTop: 0
-        });
-
-        gsap.timeline({
-        scrollTrigger: {
-            trigger: "#sec4",
-            containerAnimation: horizontalScroll,
-            start: "5% left",
-            end: "15% left",
-            scrub: true,
-            //markers: true
-            }
-        })
-        .to(".video-heading", {
-            y: "-50%",
-            rotationX: "60_cw",
-            opacity: 0,
-            ease: "none"
-            },0)
-        .to(".video-section-bottom",{ 
-            y: "50%", 
-            rotationX: "-60_ccw", 
-            opacity: 0, 
-            ease: "none" 
-            },0);
-        //-----SECTION 4 END-------
-
-        //Section 2 Text Fill
-        gsap.to("#sec2_sub", {
-            color: "orange",
-            // backgroundPositionX: "0%",
-            // stagger: 1,
-            scrollTrigger: {
-                trigger: "#sec2",
-                containerAnimation: horizontalScroll,
-                //markers: true,
-                scrub: true,
-                start: "left center",
-                end: "+=800"
-                // end: "90% left"
-            }
+        // Example: Your original #sec2_sub text fill
+        if (document.getElementById('sec2_sub')) {
+            gsap.to("#sec2_sub", {
+                color: "orange", // Or your original target
+                scrollTrigger: {
+                    trigger: "#sec2",
+                    containerAnimation: horizontalTween, // IMPORTANT CHANGE
+                    scrub: true,
+                    start: "left center", // From your original
+                    end: "+=800" // From your original
+                }
             });
-        
-        //PROGRESS FILL
-        gsap.to(".progress-bar", {
-            width: "100%",
-            ease: "none",
-            scrollTrigger: {
-                containerAnimation: horizontalScroll,
-                trigger: ".scrollx",
-                scrub: true,
-                start: "left left",
-                end: () => {
-                    const scrollContainer = document.querySelector(".scrollx");
-                    return "+=" + (scrollContainer.scrollWidth - window.innerWidth);
-                },
-                onUpdate: self => {
-                    // Optional: Rocking effect to the boat.
-                    gsap.to(".yacht-icon", {
-                        rotation: Math.sin(self.progress * Math.PI * 6) * 8, // first value dictates how often, second value is the angle
-                        duration: 0.1,
-                    });}
-            }});
+        }
 
-        // Background parallax - moves slower than scroll
-        gsap.to("#bg-parallax", {
-            x: "10%", // Background moves at 20% of scroll speed
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".sec1",
-                containerAnimation: horizontalScroll,
-                scrub: true,
-                start: "top top",
-                end: "right left"
-            }
+        // Example: Your original #bg-parallax for sec1
+        if (document.getElementById('bg-parallax')) {
+            gsap.to("#bg-parallax", {
+                x: "10%", // From your original
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".sec1", // Or #sec1
+                    containerAnimation: horizontalTween, // IMPORTANT CHANGE
+                    scrub: true,
+                    start: "top top", // From your original
+                    end: "right left" // From your original
+                }
+            });
+        }
+         // Example: Your original .content-wrapper for sec1
+        if (document.querySelector('.sec1 .content-wrapper')) {
+            gsap.to(".sec1 .content-wrapper", { // Assuming .content-wrapper is inside .sec1
+                x: "-50%", // From your original
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".sec1", // Or #sec1
+                    containerAnimation: horizontalTween, // IMPORTANT CHANGE
+                    scrub: true,
+                    start: "top top", // From your original
+                    end: "right left" // From your original
+                }
+            });
+        }
+
+
+        // Example: Your original .sec5_text opacity
+        if (document.querySelector('.sec5_text')) {
+            gsap.to(".sec5_text",{
+                opacity: '1',
+                ease: 'none',
+                scrollTrigger:{
+                    trigger: ".sec5", // Or #sec5
+                    containerAnimation: horizontalTween, // IMPORTANT CHANGE
+                    scrub: true,
+                    start: "left right", // From your original
+                    end: "+=1000", // From your original
+                }
+            });
+        }
+
+        if (document.getElementById('book-now-button') && document.getElementById('sec2')) {
+            gsap.to('.book-now-button',{
+                bottom: '20px', // Or your desired final position
+                ease: 'none',
+                scrollTrigger:{
+                    trigger: "#sec2", // Make sure #sec2 is a horizontal section
+                    containerAnimation: horizontalTween, // IMPORTANT CHANGE
+                    scrub: true,
+                    start: "left right", // Your original start
+                    end: "+=1300",       // Your original end
+                }
+            });
+        }
+
+        // --- End of re-integrated animations ---
+
+        window.addEventListener('load', () => {
+            console.log("Window loaded, refreshing ScrollTrigger for accurate final heights.");
+            ScrollTrigger.refresh(true);
         });
+        if (document.readyState === "complete") {
+             console.log("Document already complete, refreshing ScrollTrigger.");
+             ScrollTrigger.refresh(true);
+        }
 
-        gsap.to(".content-wrapper", {
-            x: "-50%", // Background moves at 20% of scroll speed
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".sec1",
-                containerAnimation: horizontalScroll,
-                scrub: true,
-                start: "top top",
-                end: "right left"
-            }
-        });
+        console.log(`Horizontal Scroll Setup (Desktop): ...`); // Your console logs
 
-        gsap.to(".sec5_text",{
-            opacity: '1',
-            ease: 'none',
-            scrollTrigger:{
-                trigger: ".sec5",
-                containerAnimation: horizontalScroll,
-                scrub: true,
-                start: "left right",
-                end: "+=1000",
-                // markers: true
-            }
-            
-        })
+        return () => {
+            console.log("Cleaning up horizontal scroll GSAP (desktop).");
+            if (mainST) mainST.kill(); // Kill the main ScrollTrigger
+            if (horizontalTween) horizontalTween.kill();
+            // Kill other ScrollTriggers created within this mm.add scope if necessary
+            // Or use a more specific way to kill only related triggers
+            gsap.utils.toArray(
+                '#sec4 .scrollTrigger', // Example selector if you add classes to triggers
+                '#sec2_sub .scrollTrigger',
+                '#bg-parallax .scrollTrigger',
+                '.sec1 .content-wrapper .scrollTrigger',
+                '.sec5_text .scrollTrigger'
+            ).forEach(st => st.kill());
+        };
+    }); // End of mm.add("(min-width: 991px)")
+}
 
-        //Book Now Slide
-        gsap.to('.book-now-button',{
-            bottom: '20px',
-            ease: 'none',
-            scrollTrigger:{
-                trigger: ".sec2",
-                containerAnimation: horizontalScroll,
-                scrub: true,
-                start: "left right",
-                end: "+=1300",
-                // markers: true
-            }
-        })
 
-        
-        // Update snap points on resize
-        window.addEventListener("resize", () => {
-            horizontalScroll.scrollTrigger.snap = getSnapPoints();
-        });
-    });
-};
+
+
+
 
 // JavaScript for the vertical banner with GSAP
 document.addEventListener('DOMContentLoaded', () => {
@@ -725,13 +726,11 @@ startTypewriter();
 // });
 
 
-
-
-
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     initImageExpansion();
-    initHorizontalScroll();
-    // initScrollSnapping();
+    initHorizontalAndDynamicScroll(); // ADD this line
+    // initBookNowButtonScroll(); // Add if you use the example's separate button logic
+    // Ensure other initializations like tab switch, typewriter are still called if needed
 });
